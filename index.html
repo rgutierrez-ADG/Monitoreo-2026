@@ -17,7 +17,6 @@
 body{font-family:system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var(--ink);min-height:100vh;padding:20px}
 .shell{border:0.5px solid rgba(0,0,0,0.12);border-radius:14px;overflow:hidden;background:var(--surface);max-width:1120px;margin:0 auto}
 
-/* HEADER */
 .header{position:relative;padding:20px 24px;display:grid;grid-template-columns:120px 1fr 220px;align-items:center;min-height:88px;overflow:hidden}
 .hbg{position:absolute;inset:0;background:linear-gradient(135deg,#0a2240 0%,#1a56a0 55%,#1565c0 100%);z-index:0}
 .hbg-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=1200&q=60&auto=format');background-size:cover;background-position:center;opacity:.17;z-index:1}
@@ -38,7 +37,6 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var
 .lu-fecha{font-size:11px;color:rgba(255,255,255,.82);font-weight:500;margin-top:1px}
 .lu-hora{font-size:13px;color:#fff;font-weight:500}
 
-/* SYNC BAR */
 .sync-bar{display:flex;align-items:center;gap:10px;padding:8px 20px;background:#f0f4f8;border-bottom:0.5px solid var(--border);flex-wrap:wrap}
 .sync-left{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
 .sync-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
@@ -54,33 +52,36 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var
 .btn-sm:hover{background:var(--surface2);border-color:var(--blue);color:var(--blue)}
 .btn-sm.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
 .btn-sm.primary:hover{opacity:.88}
-.btn-sm.alert-btn{background:#fff;border-color:var(--amber);color:var(--amber);position:relative}
-.btn-sm.alert-btn:hover{background:var(--amber-light)}
+.btn-sm.amber-btn{background:#fff;border-color:var(--amber);color:var(--amber);position:relative}
+.btn-sm.amber-btn:hover{background:var(--amber-light)}
 .btn-sm svg{width:11px;height:11px;flex-shrink:0}
 .notif-badge{position:absolute;top:-5px;right:-5px;width:16px;height:16px;background:var(--red);color:#fff;font-size:9px;font-weight:500;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #f0f4f8}
-.countdown{font-size:10px;color:var(--ink3);display:flex;align-items:center;gap:4px}
+.countdown{font-size:10px;color:var(--ink3);display:flex;align-items:center;gap:5px}
 .countdown-bar{width:40px;height:3px;background:var(--surface3);border-radius:2px;overflow:hidden}
 .countdown-fill{height:100%;background:var(--blue);border-radius:2px;transition:width 1s linear}
 
-/* CHANGELOG PANEL */
 .changelog-wrap{display:none;border-bottom:0.5px solid var(--border);background:var(--surface)}
 .changelog-wrap.open{display:block}
 .changelog-header{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;border-bottom:0.5px solid var(--border)}
 .changelog-header h3{font-size:12px;font-weight:500;color:var(--ink2)}
-.changelog-body{padding:12px 20px;max-height:220px;overflow-y:auto}
-.change-item{display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-bottom:0.5px solid var(--border)}
-.change-item:last-child{border-bottom:none}
-.change-time{font-size:10px;color:var(--ink3);white-space:nowrap;min-width:80px;padding-top:1px}
-.change-content{flex:1}
-.change-title{font-size:12px;font-weight:500;color:var(--ink);margin-bottom:2px}
-.change-detail{font-size:11px;color:var(--ink3);line-height:1.4}
-.change-badge{display:inline-block;padding:1px 6px;border-radius:10px;font-size:9px;font-weight:500;margin-left:6px}
+.changelog-body{padding:12px 20px;max-height:200px;overflow-y:auto}
+.ch-item{display:flex;gap:12px;padding:8px 0;border-bottom:0.5px solid var(--border)}
+.ch-item:last-child{border-bottom:none}
+.ch-time{font-size:10px;color:var(--ink3);white-space:nowrap;min-width:75px;padding-top:1px}
+.ch-content{flex:1}
+.ch-title{font-size:12px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.ch-detail{font-size:11px;color:var(--ink3);line-height:1.4}
+.ch-badge{display:inline-block;padding:1px 6px;border-radius:10px;font-size:9px;font-weight:500;margin-left:6px}
 .cb-new{background:#dcfce7;color:#166534}
 .cb-mod{background:#fef3c7;color:#92400e}
 .cb-alert{background:#fee2e2;color:#991b1b}
 .no-changes{font-size:12px;color:var(--ink3);text-align:center;padding:20px}
 
-/* TABS */
+.loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;gap:16px}
+.loading-spinner{width:36px;height:36px;border:3px solid var(--surface3);border-top-color:var(--blue);border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:13px;color:var(--ink3)}
+
 .tabs{display:flex;background:var(--surface2);border-bottom:0.5px solid var(--border);padding:0 24px;align-items:center}
 .tab{font-size:12px;color:var(--ink3);padding:11px 15px;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;white-space:nowrap}
 .tab:hover{color:var(--ink2)}.tab.on{color:var(--blue);border-bottom-color:var(--blue);font-weight:500}
@@ -89,7 +90,6 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var
 .btn-export:hover{opacity:.85}
 .btn-export svg{width:12px;height:12px}
 
-/* BODY */
 .body{padding:18px 24px;background:var(--surface2)}
 .panel{display:none}.panel.on{display:block}
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
@@ -150,7 +150,6 @@ select:focus{border-color:var(--blue)}
 <body>
 <div class="shell" id="dashRoot">
 
-  <!-- HEADER -->
   <div class="header">
     <div class="hbg"></div><div class="hbg-img"></div><div class="hbg-ov"></div>
     <div class="hz hdr-id"><span class="sgi">SGI</span><span class="rsig">R-SIG-MA 01</span></div>
@@ -168,12 +167,11 @@ select:focus{border-color:var(--blue)}
     </div>
   </div>
 
-  <!-- SYNC BAR -->
   <div class="sync-bar">
     <div class="sync-left">
-      <span class="sync-dot idle" id="syncDot"></span>
+      <span class="sync-dot loading" id="syncDot"></span>
       <div class="sync-info">
-        <span class="sync-msg" id="syncMsg">Conectando con Google Sheets...</span>
+        <span class="sync-msg" id="syncMsg">Cargando datos desde Google Sheets...</span>
         <span class="sync-sub" id="syncSub">Actualización automática cada 5 minutos</span>
       </div>
     </div>
@@ -182,152 +180,151 @@ select:focus{border-color:var(--blue)}
         <span id="countdownText">5:00</span>
         <div class="countdown-bar"><div class="countdown-fill" id="countdownFill" style="width:100%"></div></div>
       </div>
-      <button class="btn-sm alert-btn" id="changelogBtn" onclick="toggleChangelog()" style="display:none">
-        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M6 1v5l3 2"/><circle cx="6" cy="6" r="5"/></svg>
+      <button class="btn-sm amber-btn" id="changelogBtn" onclick="toggleChangelog()" style="display:none">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="6" cy="6" r="5"/><path d="M6 3v3l2 1"/></svg>
         Últimos cambios
         <span class="notif-badge" id="notifBadge" style="display:none">!</span>
       </button>
-      <button class="btn-sm primary" onclick="syncNow()">
+      <button class="btn-sm primary" onclick="syncAll(true)">
         <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M10 6A4 4 0 1 1 6 2M10 2v4h-4"/></svg>
         Actualizar ahora
       </button>
     </div>
   </div>
 
-  <!-- CHANGELOG PANEL -->
   <div class="changelog-wrap" id="changelogWrap">
     <div class="changelog-header">
-      <h3>Historial de cambios detectados</h3>
-      <button class="btn-sm" onclick="toggleChangelog(); clearNotif()">Cerrar</button>
+      <h3>Historial de cambios detectados en esta sesión</h3>
+      <button class="btn-sm" onclick="toggleChangelog();clearNotif()">Cerrar</button>
     </div>
     <div class="changelog-body" id="changelogBody">
-      <div class="no-changes">Aún no se detectaron cambios en esta sesión.</div>
+      <div class="no-changes">Sin cambios detectados aún.</div>
     </div>
   </div>
 
-  <!-- TABS -->
-  <div class="tabs">
-    <button class="tab on" onclick="showTab('resumen',this)">Resumen</button>
-    <button class="tab" onclick="showTab('entero',this)">Enterobacterias</button>
-    <button class="tab" onclick="showTab('listeria',this)">Alertas Listeria</button>
-    <button class="tab" onclick="showTab('salmonella',this)">Alertas Salmonella</button>
-    <div class="tabs-spacer"></div>
-    <button class="btn-export" onclick="exportPDF()">
-      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="1" y="1" width="10" height="12" rx="1.5"/><path d="M4 8h4M4 10h4M4 6h2"/><path d="M8 1v3h3"/></svg>
-      Exportar PDF
-    </button>
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Conectando con Google Sheets — cargando las 8 hojas...</div>
   </div>
 
-  <div class="body">
+  <div id="mainContent" style="display:none">
+    <div class="tabs">
+      <button class="tab on" onclick="showTab('resumen',this)">Resumen</button>
+      <button class="tab" onclick="showTab('entero',this)">Enterobacterias</button>
+      <button class="tab" onclick="showTab('listeria',this)">Alertas Listeria</button>
+      <button class="tab" onclick="showTab('salmonella',this)">Alertas Salmonella</button>
+      <div class="tabs-spacer"></div>
+      <button class="btn-export" onclick="exportPDF()">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="1" y="1" width="10" height="12" rx="1.5"/><path d="M4 8h4M4 10h4M4 6h2"/><path d="M8 1v3h3"/></svg>
+        Exportar PDF
+      </button>
+    </div>
 
-    <!-- RESUMEN -->
-    <div id="tab-resumen" class="panel on">
-      <div class="kpis">
-        <div class="kpi blue"><div class="k-lbl">Total muestreos</div><div class="k-val" id="kTotal">—</div><div class="k-sub" id="kTotalSub">—</div></div>
-        <div class="kpi blue"><div class="k-lbl">Puntos únicos</div><div class="k-val" id="kPuntos">—</div><div class="k-sub">Superficies analizadas</div></div>
-        <div class="kpi amber"><div class="k-lbl">Entero ≥ 1.000 UFC/SM</div><div class="k-val" id="kEnteroAlto">—</div><div class="k-sub" id="kEnteroAltoPct">—</div></div>
-        <div class="kpi red"><div class="k-lbl">Detecciones Salmonella</div><div class="k-val" id="kSalmo">—</div><div class="k-sub" id="kSalmoSub">—</div></div>
-      </div>
-      <div class="card card-full" style="margin-bottom:12px">
-        <div class="card-title">
-          <span>Tendencia mensual — promedio UFC/SM</span>
-          <div class="legend">
-            <div class="leg-item"><span class="leg-dot" style="background:#1a56a0"></span>Promedio</div>
-            <div class="leg-item"><span class="leg-dash"></span>Límite 1.000</div>
-          </div>
+    <div class="body">
+      <div id="tab-resumen" class="panel on">
+        <div class="kpis">
+          <div class="kpi blue"><div class="k-lbl">Total muestreos</div><div class="k-val" id="kTotal">—</div><div class="k-sub" id="kTotalSub">—</div></div>
+          <div class="kpi blue"><div class="k-lbl">Puntos únicos</div><div class="k-val" id="kPuntos">—</div><div class="k-sub">Superficies analizadas</div></div>
+          <div class="kpi amber"><div class="k-lbl">Entero ≥ 1.000 UFC/SM</div><div class="k-val" id="kEnteroAlto">—</div><div class="k-sub" id="kEnteroAltoPct">—</div></div>
+          <div class="kpi red"><div class="k-lbl">Detecciones Salmonella</div><div class="k-val" id="kSalmo">—</div><div class="k-sub" id="kSalmoSub">—</div></div>
         </div>
-        <div style="position:relative;width:100%;height:195px"><canvas id="trendChart"></canvas></div>
-      </div>
-      <div class="row2">
-        <div class="card"><div class="card-title">Distribución de muestreos</div><div id="distBars"></div></div>
-        <div class="card"><div class="card-title">Resumen por planta</div><div id="resumenPlanta"></div></div>
-      </div>
-    </div>
-
-    <!-- ENTEROBACTERIAS -->
-    <div id="tab-entero" class="panel">
-      <div class="kpis">
-        <div class="kpi blue"><div class="k-lbl">Con dato numérico</div><div class="k-val" id="kEnteroN">—</div><div class="k-sub" id="kEnteroNSub">—</div></div>
-        <div class="kpi red"><div class="k-lbl">Alto ≥ 1.000 UFC/SM</div><div class="k-val" id="kEnteroA">—</div><div class="k-sub" id="kEnteroAPct">—</div></div>
-        <div class="kpi amber"><div class="k-lbl">Medio 100–999 UFC/SM</div><div class="k-val" id="kEnteroM">—</div><div class="k-sub" id="kEnteroMPct">—</div></div>
-        <div class="kpi green"><div class="k-lbl">OK &lt; 100 UFC/SM</div><div class="k-val" id="kEnteroO">—</div><div class="k-sub" id="kEnteroOPct">—</div></div>
-      </div>
-      <div class="card card-full">
-        <div class="card-title">
-          <span>Muestreos fuera de límite por fecha</span>
-          <div class="legend">
-            <div class="leg-item"><span class="leg-dot" style="background:#c0392b"></span>Fuera de límite</div>
-            <div class="leg-item"><span class="leg-dash"></span>Límite</div>
+        <div class="card card-full" style="margin-bottom:12px">
+          <div class="card-title">
+            <span>Tendencia mensual — promedio UFC/SM</span>
+            <div class="legend">
+              <div class="leg-item"><span class="leg-dot" style="background:#1a56a0"></span>Promedio</div>
+              <div class="leg-item"><span class="leg-dash"></span>Límite 1.000</div>
+            </div>
           </div>
+          <div style="position:relative;width:100%;height:195px"><canvas id="trendChart"></canvas></div>
         </div>
-        <div class="filters">
-          <div class="f-group"><span class="f-lbl">Año</span>
-            <select id="fY" onchange="buildLine()"><option value="">Todos</option><option value="2025">2025</option><option value="2026">2026</option></select>
-          </div><div class="f-sep"></div>
-          <div class="f-group"><span class="f-lbl">Planta</span>
-            <select id="fP" onchange="updateSectors();buildLine()">
-              <option value="">Todas</option><option value="Maní">Maní (Tostado)</option><option value="Frito">Frito/Pasta</option>
-            </select>
-          </div>
-          <div class="f-group"><span class="f-lbl">Zona</span>
-            <select id="fZ" onchange="buildLine()">
-              <option value="">Todas</option><option value="Zona 1">Zona 1</option><option value="Zona 2">Zona 2</option>
-              <option value="Zona 3">Zona 3</option><option value="Zona 4">Zona 4</option>
-            </select>
-          </div>
-          <div class="f-group"><span class="f-lbl">Sector</span><select id="fS" onchange="buildLine()"><option value="">Todos</option></select></div>
-          <div class="f-sep"></div>
-          <div class="f-group"><span class="f-lbl">Límite</span>
-            <select id="fL" onchange="buildLine()"><option value="100">100 UFC/SM</option><option value="1000">1.000 UFC/SM</option></select>
-          </div>
+        <div class="row2">
+          <div class="card"><div class="card-title">Distribución de muestreos</div><div id="distBars"></div></div>
+          <div class="card"><div class="card-title">Resumen por planta</div><div id="resumenPlanta"></div></div>
         </div>
-        <div style="position:relative;width:100%;height:295px"><canvas id="lineChart"></canvas></div>
-        <div class="chart-note" id="chartNote"></div>
+      </div>
+
+      <div id="tab-entero" class="panel">
+        <div class="kpis">
+          <div class="kpi blue"><div class="k-lbl">Con dato numérico</div><div class="k-val" id="kEnteroN">—</div><div class="k-sub" id="kEnteroNSub">—</div></div>
+          <div class="kpi red"><div class="k-lbl">Alto ≥ 1.000 UFC/SM</div><div class="k-val" id="kEnteroA">—</div><div class="k-sub" id="kEnteroAPct">—</div></div>
+          <div class="kpi amber"><div class="k-lbl">Medio 100–999 UFC/SM</div><div class="k-val" id="kEnteroM">—</div><div class="k-sub" id="kEnteroMPct">—</div></div>
+          <div class="kpi green"><div class="k-lbl">OK &lt; 100 UFC/SM</div><div class="k-val" id="kEnteroO">—</div><div class="k-sub" id="kEnteroOPct">—</div></div>
+        </div>
+        <div class="card card-full">
+          <div class="card-title">
+            <span>Muestreos fuera de límite por fecha</span>
+            <div class="legend">
+              <div class="leg-item"><span class="leg-dot" style="background:#c0392b"></span>Fuera de límite</div>
+              <div class="leg-item"><span class="leg-dash"></span>Límite</div>
+            </div>
+          </div>
+          <div class="filters">
+            <div class="f-group"><span class="f-lbl">Año</span>
+              <select id="fY" onchange="buildLine()"><option value="">Todos</option><option value="2025">2025</option><option value="2026">2026</option></select>
+            </div><div class="f-sep"></div>
+            <div class="f-group"><span class="f-lbl">Planta</span>
+              <select id="fP" onchange="updateSectors();buildLine()">
+                <option value="">Todas</option><option value="Maní">Maní (Tostado)</option><option value="Frito">Frito/Pasta</option>
+              </select>
+            </div>
+            <div class="f-group"><span class="f-lbl">Zona</span>
+              <select id="fZ" onchange="buildLine()">
+                <option value="">Todas</option><option value="Zona 1">Zona 1</option><option value="Zona 2">Zona 2</option>
+                <option value="Zona 3">Zona 3</option><option value="Zona 4">Zona 4</option>
+              </select>
+            </div>
+            <div class="f-group"><span class="f-lbl">Sector</span><select id="fS" onchange="buildLine()"><option value="">Todos</option></select></div>
+            <div class="f-sep"></div>
+            <div class="f-group"><span class="f-lbl">Límite</span>
+              <select id="fL" onchange="buildLine()"><option value="100">100 UFC/SM</option><option value="1000">1.000 UFC/SM</option></select>
+            </div>
+          </div>
+          <div style="position:relative;width:100%;height:295px"><canvas id="lineChart"></canvas></div>
+          <div class="chart-note" id="chartNote"></div>
+        </div>
+      </div>
+
+      <div id="tab-listeria" class="panel">
+        <div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+          <div class="kpi amber"><div class="k-lbl">Total detecciones Listeria</div><div class="k-val" id="kListTotal">—</div><div class="k-sub">Todas las plantas</div></div>
+          <div class="kpi blue"><div class="k-lbl">Plantas afectadas</div><div class="k-val" id="kListPlantas">—</div><div class="k-sub">Con detección positiva</div></div>
+          <div class="kpi red"><div class="k-lbl">Último evento</div><div class="k-val" id="kListUltimo" style="font-size:18px">—</div><div class="k-sub" id="kListUltimoSub">—</div></div>
+        </div>
+        <div class="alert-banner amber"><div class="pulse amber"></div><h3>Listeria spp. — detecciones positivas</h3></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th style="width:22%">Planta</th><th style="width:9%">Zona</th><th style="width:16%">Sector</th><th style="width:34%">Punto de muestreo</th><th style="width:12%">Fecha</th><th style="width:7%">Resultado</th></tr></thead>
+            <tbody id="listeriaTbody"></tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">Distribución por zona</div>
+          <div id="listeriaBars"></div>
+          <div class="insight amber" id="listeriaInsight" style="margin-top:12px;display:none"></div>
+        </div>
+      </div>
+
+      <div id="tab-salmonella" class="panel">
+        <div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+          <div class="kpi red"><div class="k-lbl">Total detecciones Salmonella</div><div class="k-val" id="kSalmoTotal">—</div><div class="k-sub">Todas las plantas</div></div>
+          <div class="kpi blue"><div class="k-lbl">Planta más afectada</div><div class="k-val" id="kSalmoPlanta" style="font-size:18px">—</div><div class="k-sub" id="kSalmoPlantaSub">—</div></div>
+          <div class="kpi red"><div class="k-lbl">Punto más recurrente</div><div class="k-val" id="kSalmoRec" style="font-size:20px">—</div><div class="k-sub" id="kSalmoRecSub">—</div></div>
+        </div>
+        <div class="alert-banner red"><div class="pulse red"></div><h3>Salmonella sp. — detecciones positivas</h3></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th style="width:22%">Planta</th><th style="width:9%">Zona</th><th style="width:16%">Sector</th><th style="width:34%">Punto de muestreo</th><th style="width:12%">Fecha</th><th style="width:7%">Resultado</th></tr></thead>
+            <tbody id="salmonellaTbody"></tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">Recurrencia por punto de muestreo</div>
+          <div id="salmonellaBars"></div>
+          <div class="insight red" id="salmonellaInsight" style="margin-top:12px;display:none"></div>
+        </div>
       </div>
     </div>
-
-    <!-- LISTERIA -->
-    <div id="tab-listeria" class="panel">
-      <div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr))">
-        <div class="kpi amber"><div class="k-lbl">Total detecciones Listeria</div><div class="k-val" id="kListTotal">—</div><div class="k-sub">Todas las plantas</div></div>
-        <div class="kpi blue"><div class="k-lbl">Plantas afectadas</div><div class="k-val" id="kListPlantas">—</div><div class="k-sub">Con detección positiva</div></div>
-        <div class="kpi red"><div class="k-lbl">Último evento</div><div class="k-val" id="kListUltimo" style="font-size:18px">—</div><div class="k-sub" id="kListUltimoSub">—</div></div>
-      </div>
-      <div class="alert-banner amber"><div class="pulse amber"></div><h3>Listeria spp. — detecciones positivas</h3></div>
-      <div class="tbl-wrap">
-        <table class="tbl">
-          <thead><tr><th style="width:22%">Planta</th><th style="width:9%">Zona</th><th style="width:16%">Sector</th><th style="width:34%">Punto de muestreo</th><th style="width:12%">Fecha</th><th style="width:7%">Resultado</th></tr></thead>
-          <tbody id="listeriaTbody"></tbody>
-        </table>
-      </div>
-      <div class="card">
-        <div class="card-title">Distribución por zona</div>
-        <div id="listeriaBars"></div>
-        <div class="insight amber" id="listeriaInsight" style="margin-top:12px;display:none"></div>
-      </div>
-    </div>
-
-    <!-- SALMONELLA -->
-    <div id="tab-salmonella" class="panel">
-      <div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr))">
-        <div class="kpi red"><div class="k-lbl">Total detecciones Salmonella</div><div class="k-val" id="kSalmoTotal">—</div><div class="k-sub">Todas las plantas</div></div>
-        <div class="kpi blue"><div class="k-lbl">Planta más afectada</div><div class="k-val" id="kSalmoPlanta" style="font-size:18px">—</div><div class="k-sub" id="kSalmoPlantaSub">—</div></div>
-        <div class="kpi red"><div class="k-lbl">Punto más recurrente</div><div class="k-val" id="kSalmoRec" style="font-size:20px">—</div><div class="k-sub" id="kSalmoRecSub">—</div></div>
-      </div>
-      <div class="alert-banner red"><div class="pulse red"></div><h3>Salmonella sp. — detecciones positivas</h3></div>
-      <div class="tbl-wrap">
-        <table class="tbl">
-          <thead><tr><th style="width:22%">Planta</th><th style="width:9%">Zona</th><th style="width:16%">Sector</th><th style="width:34%">Punto de muestreo</th><th style="width:12%">Fecha</th><th style="width:7%">Resultado</th></tr></thead>
-          <tbody id="salmonellaTbody"></tbody>
-        </table>
-      </div>
-      <div class="card">
-        <div class="card-title">Recurrencia por punto de muestreo</div>
-        <div id="salmonellaBars"></div>
-        <div class="insight red" id="salmonellaInsight" style="margin-top:12px;display:none"></div>
-      </div>
-    </div>
-
   </div>
 </div>
 
@@ -336,337 +333,296 @@ select:focus{border-color:var(--blue)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 
-// ── CONFIG ────────────────────────────────────────────────────
-const GSHEETS_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQEyvxKcuKt515yX-GCOn_3AxBdOvs5iXwDmLo6OUDFoVg-8WmHFj-irIv6_CcDMw/pub?output=csv';
-const SYNC_INTERVAL = 5 * 60; // 5 minutos en segundos
-const SHEET_MAP = {
-  'Planta Maní - Zona 1':  ['Planta Maní (Tostado)','Zona 1'],
-  'Planta Maní - Zona 2':  ['Planta Maní (Tostado)','Zona 2'],
-  'Planta Maní - Zona 3':  ['Planta Maní (Tostado)','Zona 3'],
-  'Planta Maní - Zona 4':  ['Planta Maní (Tostado)','Zona 4'],
-  'Planta Pasta - Zona 1': ['Planta Frito/Pasta','Zona 1'],
-  'Planta Pasta - Zona 2': ['Planta Frito/Pasta','Zona 2'],
-  'Planta Pasta - Zona 3': ['Planta Frito/Pasta','Zona 3'],
-  'Planta Pasta - Zona 4': ['Planta Frito/Pasta','Zona 4'],
-};
+// ── CONFIG: 8 hojas con sus GIDs reales ──────────────────────
+const BASE = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQEyvxKcuKt515yX-GCOn_3AxBdOvs5iXwDmLo6OUDFoVg-8WmHFj-irIv6_CcDMw/pub?output=csv&single=true&gid=';
+const SHEETS = [
+  { name:'Planta Maní - Zona 1',  planta:'Planta Maní (Tostado)', zona:'Zona 1', gid:'333851133'  },
+  { name:'Planta Maní - Zona 2',  planta:'Planta Maní (Tostado)', zona:'Zona 2', gid:'652406869'  },
+  { name:'Planta Maní - Zona 3',  planta:'Planta Maní (Tostado)', zona:'Zona 3', gid:'1737265871' },
+  { name:'Planta Maní - Zona 4',  planta:'Planta Maní (Tostado)', zona:'Zona 4', gid:'1677830361' },
+  { name:'Planta Pasta - Zona 1', planta:'Planta Frito/Pasta',    zona:'Zona 1', gid:'1729143154' },
+  { name:'Planta Pasta - Zona 2', planta:'Planta Frito/Pasta',    zona:'Zona 2', gid:'1229958017' },
+  { name:'Planta Pasta - Zona 3', planta:'Planta Frito/Pasta',    zona:'Zona 3', gid:'2119775297' },
+  { name:'Planta Pasta - Zona 4', planta:'Planta Frito/Pasta',    zona:'Zona 4', gid:'85665204'   },
+];
+const SYNC_SECS = 300; // 5 minutos
 
-// ── ESTADO ───────────────────────────────────────────────────
-let DATA = [{"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Cangilones noria ENV2", "fecha": "2025-04-14", "salmonella": "Detectado", "entero_raw": "<10", "entero_num": 5.0, "listeria": "ND", "salmo_det": true, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Canjilones noria ENV4", "fecha": "2025-06-06", "salmonella": "Detectado", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": true, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Canjilones noria ENV4", "fecha": "2025-05-09", "salmonella": "Detectado", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": true, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Canjilones noria ENV4", "fecha": "2025-04-14", "salmonella": "Detectado", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": true, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Canjilones noria ENV4", "fecha": "2025-07-18", "salmonella": "Detectado", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": true, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Canjilones noria ENV5", "fecha": "2025-07-04", "salmonella": "Detectado", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": true, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Canjilones noria ENV5", "fecha": "2025-06-06", "salmonella": "Detectado", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": true, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Canjilones noria ENV5", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Canjilones noria ENV5", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "160", "entero_num": 160.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Canjilones noria ENV5", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Canjilones noria envasadora al vacío", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "120", "entero_num": 120.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Canjilones noria envasadora al vacío", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "Canjilones noria envasadora al vacío", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "NE50", "entero_num": 50.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "balanza multicabezal N°2", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "balanza multicabezal N°4", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "balanza multicabezal N°4", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "balanza multicabezal N°4", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "balanza multicabezal N°4", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "500", "entero_num": 500.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "balanza multicabezal N°5", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "balanza multicabezal N°5", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "balanza multicabezal N°5", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "balanza multicabezal N°5", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "boca de embolse trasvasado", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "490", "entero_num": 490.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "espadas envasadora al vacío", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "espadas envasadora al vacío", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "420", "entero_num": 420.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "espadas envasadora al vacío", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "170", "entero_num": 170.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora N°2", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora N°4 / Conveyer alimentación", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "NE80", "entero_num": 80.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora N°4 / Conveyer alimentación", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora N°4 / Conveyer alimentación", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "320", "entero_num": 320.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora N°4 / Conveyer alimentación", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "6400", "entero_num": 6400.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora N°5 / Conveyer alimentación env5", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "260", "entero_num": 260.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora N°5 / Conveyer alimentación env5", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "100", "entero_num": 100.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora N°5 / Conveyer alimentación env5", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora N°5 / Conveyer alimentación env5", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "NE 2,2E+04", "entero_num": 22000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora N°5 / Conveyer alimentación env5", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "NE 900", "entero_num": 900.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora al vacío / Conveyer", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "NE 10", "entero_num": 10.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora al vacío / Conveyer", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "interior tolva envasadora al vacío / Conveyer", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "8000", "entero_num": 8000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Envasado", "punto": "tolva trasvasado", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "2100", "entero_num": 2100.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "Cangilones noria horno tostado, salida a embolse", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "190", "entero_num": 190.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "Cangilones noria horno tostado, salida a embolse", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "2600", "entero_num": 2600.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "Cangilones noria horno tostado, salida a embolse", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "2400", "entero_num": 2400.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "Cangilones noria horno tostado, salida a embolse", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "Cangilones noria horno tostado, salida a embolse", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "4800", "entero_num": 4800.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "Cangilones noria horno tostado, salida a embolse", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "260", "entero_num": 260.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "Salida de electrónica tostado", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "Salida de electrónica tostado", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "220", "entero_num": 220.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "Salida de electrónica tostado", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "Salida de electrónica tostado", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "Salida de electrónica tostado", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "200", "entero_num": 200.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "Salida de electrónica tostado", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "boca del embolse tostado", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "160", "entero_num": 160.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "boca del embolse tostado", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "boca del embolse tostado", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "boca del embolse tostado", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "380", "entero_num": 380.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Horno", "punto": "boca del embolse tostado", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "boca de envasado en big bags salador", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "boca de envasado en big bags salador", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "boca de envasado en big bags salador", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "boca de envasado en big bags salador", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "130", "entero_num": 130.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "boca de envasado en big bags salador", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "conveyer tolva de alimentación", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "110", "entero_num": 110.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "conveyer tolva de alimentación", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "conveyer tolva de alimentación", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "conveyer tolva de alimentación", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "110", "entero_num": 110.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "interior salador", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "interior salador", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "interior salador", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "interior salador", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "680", "entero_num": 680.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "interior tolva salador", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "interior tolva salador", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Salador", "punto": "interior tolva salador", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Referencias:", "punto": "No Detectado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Referencias:", "punto": "Detectado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 1", "sector": "Referencias:", "punto": "Sin datos / No muestreado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Bowl envasadora al vacío", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Bowl envasadora al vacío", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Bowl envasadora al vacío", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Bowl envasadora embolse", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Indumentaria personal embolse", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "11000", "entero_num": 11000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Indumentaria personal envasadora", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "110", "entero_num": 110.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Indumentaria personal envasadora", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "210", "entero_num": 210.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Indumentaria personal envasadora", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Indumentaria personal envasadora", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "NE 2,1E+04", "entero_num": 21000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Indumentaria personal envasadora", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "NE 70", "entero_num": 70.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora 2", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora 4", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "NE50", "entero_num": 50.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora 4", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora 4", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora 4", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora 5", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora 5", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora 5", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora 5", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "250", "entero_num": 250.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora 5", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora al vacío", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora al vacío", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "PLC envasadora al vacío", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Pasarelas envasadoras", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Pasarelas envasadoras", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Pasarelas envasadoras", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Pasarelas envasadoras", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "Pasarelas envasadoras", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "540", "entero_num": 540.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Envasado", "punto": "computadora embolse", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "2300", "entero_num": 2300.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Computadora Horno", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "NE 60", "entero_num": 60.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Computadora Horno", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "4000", "entero_num": 4000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Computadora Horno", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Computadora Horno", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "920", "entero_num": 920.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Computadora Horno", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "2500", "entero_num": 2500.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Computadora Horno", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "NE 20", "entero_num": 20.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Escaleras/pasarelas líneas de tostado (piso eléctronica)", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "3100", "entero_num": 3100.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Escaleras/pasarelas líneas de tostado (piso eléctronica)", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Escaleras/pasarelas líneas de tostado (piso eléctronica)", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Escaleras/pasarelas líneas de tostado (piso eléctronica)", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "150", "entero_num": 150.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Escaleras/pasarelas líneas de tostado (piso eléctronica)", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Estructuras línea del horno (pata o sup adyacente)", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "320", "entero_num": 320.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Estructuras línea del horno (pata o sup adyacente)", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "1400", "entero_num": 1400.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Estructuras línea del horno (pata o sup adyacente)", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "8400", "entero_num": 8400.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Estructuras línea del horno (pata o sup adyacente)", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "6100", "entero_num": 6100.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Panel de control eléctrónica", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "NE 10", "entero_num": 10.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Panel de control eléctrónica", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "390", "entero_num": 390.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Panel de control eléctrónica", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Panel de control eléctrónica", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Panel de control eléctrónica", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "200", "entero_num": 200.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Horno", "punto": "Panel de control eléctrónica", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "NE 40", "entero_num": 40.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Big bags de uso interno semielaborado (saborizados, tostado, frito salado)", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "NE 30", "entero_num": 30.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Big bags de uso interno semielaborado (saborizados, tostado, frito salado)", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Big bags de uso interno semielaborado (saborizados, tostado, frito salado)", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Big bags de uso interno semielaborado (saborizados, tostado, frito salado)", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Big bags de uso interno semielaborado (saborizados, tostado, frito salado)", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "NE60", "entero_num": 60.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Big bags de uso interno semielaborado (saborizados, tostado, frito salado)", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Indumentaria personal", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "140", "entero_num": 140.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Indumentaria personal", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "100", "entero_num": 100.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Indumentaria personal", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "860", "entero_num": 860.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Variador de velocidad y variador de sal", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Variador de velocidad y variador de sal", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "NE10", "entero_num": 10.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Variador de velocidad y variador de sal", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Variador de velocidad y variador de sal", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "Variador de velocidad y variador de sal", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "utensilios, bowl, colador, y espatúla", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "100", "entero_num": 100.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "utensilios, bowl, colador, y espatúla", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "utensilios, bowl, colador, y espatúla", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "utensilios, bowl, colador, y espatúla", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Salador", "punto": "utensilios, bowl, colador, y espatúla", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Referencias:", "punto": "No Detectado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Referencias:", "punto": "Listeria Detectada", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 2", "sector": "Referencias:", "punto": "Sin datos / No muestreado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Armario envasadoras", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Armario envasadoras", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Armario envasadoras", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Armario envasadoras", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Armario envasadoras", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Armario línea de tostado", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "NE40", "entero_num": 40.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Calzado personal", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Calzado personal", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Calzado personal", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "3000", "entero_num": 3000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Calzado personal", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Calzado personal", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Calzado personal", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Pallet de uso interno", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Pallet de uso interno", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "NE20", "entero_num": 20.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Pallet de uso interno", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Pallet de uso interno", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Pallet de uso interno", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Unión pared-piso", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Unión pared-piso", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Unión pared-piso", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Unión pared-piso", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "Unión pared-piso", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "elementos de limpieza envasadora", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "elementos de limpieza envasadora", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "elementos de limpieza envasadora", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "elementos de limpieza envasadora", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "elementos de limpieza envasadora", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "elementos de limpieza salador", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "elementos de limpieza salador", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "elementos de limpieza salador", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "elementos limpieza tostado", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "elementos limpieza tostado", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "4100", "entero_num": 4100.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "elementos limpieza tostado", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Planta PE", "punto": "elementos limpieza tostado", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Referencias:", "punto": "No Detectado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Referencias:", "punto": "Listeria Detectada", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 3", "sector": "Referencias:", "punto": "Sin datos / No muestreado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Comedor picaporte", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Comedor picaporte", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Comedor picaporte", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Comedor picaporte", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Comedor pisos", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Comedor pisos", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Comedor pisos", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Comedor pisos", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "Detectado", "salmo_det": false, "list_det": true}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Dispenser de jabon/ sanitizante en filtro sanitario", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Dispenser de jabon/ sanitizante en filtro sanitario", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte filtro sanitario", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte filtro sanitario", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte filtro sanitario", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte filtro sanitario", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte filtro sanitario", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte filtro sanitario", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte oficina calidad", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte oficina calidad", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte oficina calidad", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte oficina producción", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte oficina producción", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte oficina producción", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Picaporte oficina producción", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Piso filtro sanitario", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "Detectado", "salmo_det": false, "list_det": true}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Vestuario/Baño picaporte", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Vestuario/Baño picaporte", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Vestuario/Baño picaporte", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Vestuario/Baño picaporte", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Vestuario/Baño pisos", "fecha": "2025-07-04", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Vestuario/Baño pisos", "fecha": "2025-06-06", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Vestuario/Baño pisos", "fecha": "2025-05-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Vestuario/Baño pisos", "fecha": "2025-04-14", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Planta PE", "punto": "Vestuario/Baño pisos", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "Detectado", "salmo_det": false, "list_det": true}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Referencias:", "punto": "No Detectado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Referencias:", "punto": "Listeria Detectada", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Maní (Tostado)", "zona": "Zona 4", "sector": "Referencias:", "punto": "Sin datos / No muestreado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Línea frito", "punto": "Boca de envasado de big bags", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "28000", "entero_num": 28000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Línea frito", "punto": "Boca de envasado de big bags", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Línea frito", "punto": "Boca de envasado de big bags", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Línea frito", "punto": "Boca de envasado de big bags", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Línea frito", "punto": "Boca de envasado de big bags", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Línea frito", "punto": "Elevador ingreso a freidor", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "NE 30", "entero_num": 30.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Línea frito", "punto": "Elevador ingreso a freidor", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "900", "entero_num": 900.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Línea frito", "punto": "Elevador ingreso a freidor", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "NE60", "entero_num": 60.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Línea frito", "punto": "Elevador ingreso a freidor", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "NE30", "entero_num": 30.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Línea frito", "punto": "Elevador ingreso a freidor", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "2200", "entero_num": 2200.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Línea frito", "punto": "Elevador ingreso a freidor", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "Conveyer salida del horno", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "Conveyer salida del horno", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "Conveyer salida del horno", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "Conveyer salida del horno", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "Conveyer salida del horno", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "pico de envasado en tambores y baldes", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "pico de envasado en tambores y baldes", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "NE40", "entero_num": 40.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "pico de envasado en tambores y baldes", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "pico de envasado en tambores y baldes", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "pico de envasado en tambores y baldes", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "tapa de inspección molino 1", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "NE 30", "entero_num": 30.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "tapa de inspección molino 1", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "220", "entero_num": 220.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "tapa de inspección molino 1", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "150", "entero_num": 150.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "tapa de inspección molino 1", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "tapa de inspección molino 1", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "tapa de inspección molino 1", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "tapa de inspección molino 2", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "40000", "entero_num": 40000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "tapa de inspección molino 2", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "tapa de inspección molino 2", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "2000", "entero_num": 2000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "tapa de inspección molino 2", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "NE 10", "entero_num": 10.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Pasta", "punto": "tapa de inspección molino 2", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Referencias:", "punto": "No Detectado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Referencias:", "punto": "Listeria Detectada", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 1", "sector": "Referencias:", "punto": "Sin datos / No muestreado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Cucharon cuba de aceite", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "250", "entero_num": 250.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Cucharon cuba de aceite", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "150", "entero_num": 150.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Cucharon cuba de aceite", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Cucharon cuba de aceite", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "NE 20", "entero_num": 20.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Cucharon cuba de aceite", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Espátulas, cucharas y bowl", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "8200", "entero_num": 8200.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Espátulas, cucharas y bowl", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "NE20", "entero_num": 20.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Espátulas, cucharas y bowl", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Espátulas, cucharas y bowl", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "NE 60", "entero_num": 60.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Espátulas, cucharas y bowl", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Indumentaria personal frito", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "NE 1,8E+04", "entero_num": 18000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Indumentaria personal frito", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "680", "entero_num": 680.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Indumentaria personal frito", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "660", "entero_num": 660.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Indumentaria personal frito", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Indumentaria personal frito", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "NE 20", "entero_num": 20.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Panel de control de temp y velocidad", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "NE80", "entero_num": 80.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Panel de control de temp y velocidad", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "5600", "entero_num": 5600.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Panel de control de temp y velocidad", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "200", "entero_num": 200.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Panel de control de temp y velocidad", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "340", "entero_num": 340.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Panel de control de temp y velocidad", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Panel de control de temp y velocidad", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Pasamanos escalera línea del frito", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "900", "entero_num": 900.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Pasamanos escalera línea del frito", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Pasamanos escalera línea del frito", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "FRITO", "punto": "Pasamanos escalera línea del frito", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Big bag semielaborado", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "3400", "entero_num": 3400.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Big bag semielaborado", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "4700", "entero_num": 4700.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Big bag semielaborado", "fecha": "2025-05-19", "salmonella": "NE", "entero_raw": "1300", "entero_num": 1300.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Big bag semielaborado", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "340", "entero_num": 340.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Big bag semielaborado", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "NE 50", "entero_num": 50.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Big bag semielaborado", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "NE 50", "entero_num": 50.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Bowl preparación aditivos", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Cortina sanitaria", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "NE 20", "entero_num": 20.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Cortina sanitaria", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Cortina sanitaria", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "290", "entero_num": 290.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Cortina sanitaria", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Cortina sanitaria", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Cortina sanitaria", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Indumentaria personal pasta", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "NE 300", "entero_num": 300.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Indumentaria personal pasta", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "11000", "entero_num": 11000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Indumentaria personal pasta", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "15000", "entero_num": 15000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Indumentaria personal pasta", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "550", "entero_num": 550.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Indumentaria personal pasta", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "8200", "entero_num": 8200.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Patas de equipos (tanques)", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "3900", "entero_num": 3900.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Patas de tanques", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "13000", "entero_num": 13000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Patas de tanques", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "7600", "entero_num": 7600.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Patas de tanques", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "5600", "entero_num": 5600.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Patas de tanques", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Patas de tanques", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "3800", "entero_num": 3800.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Tablero del horno/pasta", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "NE 80", "entero_num": 80.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Tablero del horno/pasta", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "120", "entero_num": 120.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Tablero del horno/pasta", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Tablero del horno/pasta", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "NE50", "entero_num": 50.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Tablero del horno/pasta", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "NE 10", "entero_num": 10.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Tablero del horno/pasta", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "340", "entero_num": 340.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Tapa tanque de pasta", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Tapa tanque de pasta", "fecha": "2025-05-19", "salmonella": "NE", "entero_raw": "NE50", "entero_num": 50.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Tapa tanque de pasta", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Tapa tanque de pasta", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Tapa tanque de pasta", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "<10", "entero_num": 5.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Teclado computadora", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "2000", "entero_num": 2000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Teclado computadora", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "NE 1,6E+03", "entero_num": 1600.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Teclado computadora", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "1000", "entero_num": 1000.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Teclado computadora", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "NE20", "entero_num": 20.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Teclado computadora", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "NE 70", "entero_num": 70.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "PASTA", "punto": "Teclado computadora", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "160", "entero_num": 160.0, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "Referencias:", "punto": "No Detectado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "Referencias:", "punto": "Listeria Detectada", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 2", "sector": "Referencias:", "punto": "Sin datos / No muestreado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Balanza cabina envasado pasta", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Balanza cabina envasado pasta", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Balanza cabina envasado pasta", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Balanza cabina envasado pasta", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Balanza cabina envasado pasta", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Balanza cabina envasado pasta", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Calzado del personal frito", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Calzado del personal frito", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Calzado del personal frito", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Calzado del personal frito", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Calzado del personal pasta", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Calzado del personal pasta", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Calzado del personal pasta", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Calzado del personal pasta", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Calzado del personal pasta", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Calzado del personal pasta", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Elementos limpieza frito", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Elementos limpieza frito", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Elementos limpieza frito", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Elementos limpieza frito", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Elementos limpieza frito", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Elementos limpieza pasta", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Esquinas piso cabina envasado pasta", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Esquinas piso cabina envasado pasta", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Esquinas piso cabina envasado pasta", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Esquinas piso cabina envasado pasta", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Esquinas piso cabina envasado pasta", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Fregadora de piso", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Fregadora de piso", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Fregadora de piso", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Fregadora de piso", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "Detectado", "salmo_det": false, "list_det": true}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Pallet de uso interno", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Pallet de uso interno", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Pallet de uso interno", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Pallet de uso interno", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Pallet de uso interno", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Pallet de uso interno", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Piso pasta", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Piso pasta", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Rueda autoelevador", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Rueda autoelevador", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Rueda autoelevador", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "D", "salmo_det": false, "list_det": true}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Planta PE vieja", "punto": "Rueda autoelevador", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "-", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Referencias:", "punto": "No Detectado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Referencias:", "punto": "Listeria Detectada", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 3", "sector": "Referencias:", "punto": "Sin datos / No muestreado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Casillero vestuario", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Dispenser de sanitizante en filtro sanitario", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Dispenser de sanitizante en filtro sanitario", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Picaporte baño", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Picaporte baño", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Picaporte comedor", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Picaporte filtro sanitario", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Picaporte filtro sanitario", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Picaporte filtro sanitario", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Picaporte filtro sanitario", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Picaporte filtro sanitario", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Picaporte oficina calidad", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Picaporte oficina calidad", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Picaporte oficina calidad", "fecha": "2025-04-29", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Piso Baño", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Piso Baño", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Piso Baño", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Piso Baño", "fecha": "2025-07-31", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Piso comedor", "fecha": "2025-06-09", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Piso comedor", "fecha": "2025-07-18", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Piso comedor", "fecha": "2025-05-19", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Planta PE vieja", "punto": "Piso comedor", "fecha": "2025-06-23", "salmonella": "ND", "entero_raw": "-", "entero_num": null, "listeria": "ND", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Referencias:", "punto": "No Detectado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Referencias:", "punto": "Listeria Detectada", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}, {"planta": "Planta Frito/Pasta", "zona": "Zona 4", "sector": "Referencias:", "punto": "Sin datos / No muestreado", "fecha": null, "salmonella": "", "entero_raw": "", "entero_num": null, "listeria": "", "salmo_det": false, "list_det": false}];
-DATA.forEach(r => { r.fechaObj = r.fecha ? new Date(r.fecha) : null; });
-
+// ── ESTADO ────────────────────────────────────────────────────
+let DATA = [];
 let trendInst = null, lineInst = null;
-let changelog = [];          // historial de cambios
-let pendingNotif = false;    // hay cambios no vistos
-let countdownSecs = SYNC_INTERVAL;
+let changelog = [];
+let lastSnapshot = '';
+let firstLoad = true;
+let countdownSecs = SYNC_SECS;
 let countdownTimer = null;
-let syncTimer = null;
-let firstSync = true;
 
 // ── RELOJ ─────────────────────────────────────────────────────
 function tick(){
-  const n = new Date();
-  document.getElementById('luFecha').textContent = n.toLocaleDateString('es-AR',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});
-  document.getElementById('luHora').textContent  = n.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const n=new Date();
+  document.getElementById('luFecha').textContent=n.toLocaleDateString('es-AR',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});
+  document.getElementById('luHora').textContent=n.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
 }
-tick(); setInterval(tick, 1000);
+tick(); setInterval(tick,1000);
+
+// ── SYNC STATUS ───────────────────────────────────────────────
+function setSyncStatus(type,msg,sub){
+  document.getElementById('syncDot').className='sync-dot '+type;
+  document.getElementById('syncMsg').textContent=msg;
+  if(sub!==undefined) document.getElementById('syncSub').textContent=sub;
+}
 
 // ── COUNTDOWN ─────────────────────────────────────────────────
 function startCountdown(){
-  countdownSecs = SYNC_INTERVAL;
-  document.getElementById('countdownWrap').style.display = 'flex';
+  countdownSecs=SYNC_SECS;
+  document.getElementById('countdownWrap').style.display='flex';
   clearInterval(countdownTimer);
-  countdownTimer = setInterval(()=>{
+  countdownTimer=setInterval(()=>{
     countdownSecs--;
-    if(countdownSecs <= 0){ clearInterval(countdownTimer); syncNow(); return; }
-    const m = Math.floor(countdownSecs/60);
-    const s = countdownSecs % 60;
-    document.getElementById('countdownText').textContent = m+':'+(s<10?'0':'')+s;
-    document.getElementById('countdownFill').style.width = (countdownSecs/SYNC_INTERVAL*100)+'%';
-  }, 1000);
+    if(countdownSecs<=0){clearInterval(countdownTimer);syncAll(false);return;}
+    const m=Math.floor(countdownSecs/60), s=countdownSecs%60;
+    document.getElementById('countdownText').textContent=m+':'+(s<10?'0':'')+s;
+    document.getElementById('countdownFill').style.width=(countdownSecs/SYNC_SECS*100)+'%';
+  },1000);
 }
 
-// ── SYNC STATUS ───────────────────────────────────────────────
-function setSyncStatus(type, msg, sub){
-  document.getElementById('syncDot').className = 'sync-dot '+type;
-  document.getElementById('syncMsg').textContent = msg;
-  if(sub !== undefined) document.getElementById('syncSub').textContent = sub;
+// ── CSV PARSER ────────────────────────────────────────────────
+function splitCSV(line){
+  const cols=[]; let cur='',inQ=false;
+  for(const ch of line){
+    if(ch==='"'){inQ=!inQ;}
+    else if(ch===','&&!inQ){cols.push(cur.trim());cur='';}
+    else{cur+=ch;}
+  }
+  cols.push(cur.trim()); return cols;
 }
 
-// ── PARSERS ───────────────────────────────────────────────────
 function parseEntero(v){
-  if(!v || ['-',''].includes(String(v).trim().toLowerCase())) return null;
-  const s = String(v).trim().toUpperCase().replace(',','.');
-  if(s === '<10') return 5;
-  const n = parseFloat(s.replace(/^NE\s*/,''));
-  return isNaN(n) ? null : n;
+  if(!v||['-',''].includes(String(v).trim().toLowerCase()))return null;
+  const s=String(v).trim().toUpperCase().replace(',','.');
+  if(s==='<10')return 5;
+  const n=parseFloat(s.replace(/^NE\s*/,''));
+  return isNaN(n)?null:n;
 }
 
-function parseFechaStr(v){
-  const m = String(v).match(/(\d{1,2})[/\-](\d{1,2})[/\-](\d{2,4})/);
-  if(!m) return null;
-  let[,d,mo,y] = m; if(y.length===2) y='20'+y;
+function parseFecha(v){
+  const m=String(v).match(/(\d{1,2})[/\-](\d{1,2})[/\-](\d{2,4})/);
+  if(!m)return null;
+  let[,d,mo,y]=m; if(y.length===2)y='20'+y;
   return new Date(+y,+mo-1,+d);
 }
 
-function fmtFecha(d){ return d ? d.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'}) : '—'; }
-function getD(r){ return r.fechaObj instanceof Date ? r.fechaObj : (r.fecha ? new Date(r.fecha) : null); }
+function fmtFecha(d){return d?d.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'}):'—';}
+function getD(r){return r.fechaObj instanceof Date?r.fechaObj:(r.fecha?new Date(r.fecha):null);}
 
-// ── CSV PARSER (Google Sheets multi-hoja) ─────────────────────
-function parseGSheetsCSV(text){
-  // Google Sheets publica UNA hoja por URL — necesitamos iterar por hoja
-  // La URL base sin gid exporta la primera hoja activa
-  // Retornamos los datos parseados de esa hoja con metadatos de título
-  const lines = text.split('\n');
-  const rows = [];
-  let planta = '', zona = '', sector = '', pastHeader = false;
-
-  for(let i = 0; i < lines.length; i++){
-    const cols = splitCSVLine(lines[i]);
-    if(!cols.length) continue;
-    const c0 = cols[0]||'', c1 = cols[1]||'';
-
-    // Detectar fila de título (contiene nombre de planta y zona)
-    if(c0.match(/Planta.{0,15}(Maní|Frito|Pasta)/i) && c0.match(/Zona/i)){
-      planta = c0.includes('Maní') ? 'Planta Maní (Tostado)' : 'Planta Frito/Pasta';
-      const zm = c0.match(/Zona (\d)/i);
-      zona = zm ? 'Zona '+zm[1] : zona;
-      sector = ''; pastHeader = false; continue;
-    }
-    // Detectar fila de encabezado
-    if(c0 === 'Sector' || c1 === 'Punto de Muestreo'){ pastHeader = true; continue; }
-    if(!pastHeader) continue;
-    // Sector
-    if(c0 && !c1){ sector = c0; continue; }
-    if(!c1) continue;
-
-    const sal     = (cols[3]||'').trim();
-    const ent_raw = (cols[4]||'').trim();
-    const lst     = (cols[5]||'').trim();
-    const fechaObj = parseFechaStr(cols[2]||'');
+function parseSheetCSV(text, planta, zona){
+  const lines=text.split('\n');
+  const rows=[]; let sector='', pastHeader=false;
+  for(let i=0;i<lines.length;i++){
+    const cols=splitCSV(lines[i]);
+    const c0=(cols[0]||'').trim(), c1=(cols[1]||'').trim();
+    // Fila de encabezado
+    if(c0==='Sector'||c1==='Punto de Muestreo'){pastHeader=true;continue;}
+    if(!pastHeader)continue;
+    // Fila de sector
+    if(c0&&!c1){sector=c0;continue;}
+    if(!c1)continue;
+    const sal=(cols[3]||'').trim();
+    const ent_raw=(cols[4]||'').trim();
+    const lst=(cols[5]||'').trim();
+    const fechaObj=parseFecha(cols[2]||'');
     rows.push({
-      planta, zona, sector, punto: c1,
-      fecha: fechaObj ? fechaObj.toISOString().slice(0,10) : null,
+      planta,zona,sector,punto:c1,
+      fecha:fechaObj?fechaObj.toISOString().slice(0,10):null,
       fechaObj,
-      salmonella: sal, entero_raw: ent_raw, entero_num: parseEntero(ent_raw), listeria: lst,
-      salmo_det: sal.toLowerCase() === 'detectado',
-      list_det:  ['detectado','d'].includes(lst.toLowerCase()),
+      salmonella:sal,entero_raw:ent_raw,
+      entero_num:parseEntero(ent_raw),listeria:lst,
+      salmo_det:sal.toLowerCase()==='detectado',
+      list_det:['detectado','d'].includes(lst.toLowerCase()),
     });
   }
   return rows;
 }
 
-function splitCSVLine(line){
-  const cols=[]; let cur='', inQ=false;
-  for(const ch of line){
-    if(ch==='"'){ inQ=!inQ; }
-    else if(ch===','&&!inQ){ cols.push(cur.trim()); cur=''; }
-    else { cur+=ch; }
-  }
-  cols.push(cur.trim()); return cols;
+// ── FETCH UNA HOJA ────────────────────────────────────────────
+async function fetchSheet(sheet){
+  const url=BASE+sheet.gid+'&t='+Date.now();
+  const resp=await fetch(url);
+  if(!resp.ok) throw new Error('HTTP '+resp.status+' en '+sheet.name);
+  const text=await resp.text();
+  return parseSheetCSV(text,sheet.planta,sheet.zona);
 }
 
-// ── SNAPSHOT para comparar cambios ────────────────────────────
+// ── SYNC TODAS LAS HOJAS ──────────────────────────────────────
+async function syncAll(manual=false){
+  clearInterval(countdownTimer);
+  setSyncStatus('loading',
+    manual?'Actualizando desde Google Sheets...':'Sincronización automática en curso...',
+    'Cargando '+SHEETS.length+' hojas...');
+
+  try{
+    // Fetch en paralelo — todas las hojas al mismo tiempo
+    const results = await Promise.all(SHEETS.map(s=>fetchSheet(s)));
+    const newData = results.flat();
+
+    if(newData.length===0) throw new Error('Sin datos recibidos');
+
+    // Detectar cambios
+    const newSnap=makeSnapshot(newData);
+    if(!firstLoad && lastSnapshot && lastSnapshot!==newSnap){
+      const changes=detectChanges(lastSnapshot,newSnap,newData);
+      if(changes.length) addChangelog(changes);
+    }
+    lastSnapshot=newSnap;
+    DATA=newData;
+
+    if(firstLoad){
+      firstLoad=false;
+      document.getElementById('loadingScreen').style.display='none';
+      document.getElementById('mainContent').style.display='block';
+      document.getElementById('changelogBtn').style.display='flex';
+    }
+
+    const hora=new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+    setSyncStatus('ok',
+      'Google Sheets · '+DATA.length+' registros · actualizado '+hora,
+      'Próxima actualización automática en 5 minutos');
+    renderAll();
+  }catch(e){
+    setSyncStatus('err','Error al conectar: '+e.message,'Reintentando en 5 minutos');
+    if(firstLoad){
+      document.getElementById('loadingScreen').innerHTML=
+        '<div style="font-size:13px;color:var(--red);text-align:center">'+
+        'No se pudo conectar con Google Sheets.<br>'+
+        'Verificá que las hojas estén publicadas correctamente.<br><br>'+
+        '<button class="btn-sm primary" onclick="syncAll(true)" style="margin:0 auto">Reintentar</button></div>';
+    }
+  }
+  startCountdown();
+}
+
+// ── SNAPSHOT y DETECCIÓN DE CAMBIOS ──────────────────────────
 function makeSnapshot(data){
   return JSON.stringify({
-    total: data.length,
-    salmo: data.filter(r=>r.salmo_det).length,
-    list:  data.filter(r=>r.list_det).length,
-    enteroAlto: data.filter(r=>r.entero_num!==null&&r.entero_num>=1000).length,
+    total:data.length,
+    salmo:data.filter(r=>r.salmo_det).length,
+    list:data.filter(r=>r.list_det).length,
+    enteroAlto:data.filter(r=>r.entero_num!==null&&r.entero_num>=1000).length,
   });
 }
 
-let lastSnapshot = '';
-
-function detectChanges(newData){
-  const newSnap = makeSnapshot(newData);
-  if(!lastSnapshot || lastSnapshot === newSnap) { lastSnapshot = newSnap; return null; }
-
-  const prev = JSON.parse(lastSnapshot);
-  const curr = JSON.parse(newSnap);
-  lastSnapshot = newSnap;
-
-  const changes = [];
-  const now = new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
-
-  if(curr.total !== prev.total){
-    const diff = curr.total - prev.total;
-    changes.push({ time: now, title: 'Nuevos muestreos cargados', detail: (diff>0?'+':'')+diff+' registros (total: '+curr.total+')', type: 'new' });
+function detectChanges(prevSnap,currSnap,newData){
+  const prev=JSON.parse(prevSnap), curr=JSON.parse(currSnap);
+  const changes=[];
+  const hora=new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+  if(curr.total!==prev.total){
+    const d=curr.total-prev.total;
+    changes.push({time:hora,title:'Nuevos muestreos cargados',detail:(d>0?'+':'')+d+' registros (total: '+curr.total+')',type:'new'});
   }
-  if(curr.salmo !== prev.salmo){
-    const diff = curr.salmo - prev.salmo;
-    changes.push({ time: now, title: 'Salmonella: cambio en detecciones', detail: (diff>0?'+':'')+diff+' detecciones (total: '+curr.salmo+')', type: diff>0?'alert':'mod' });
+  if(curr.salmo!==prev.salmo){
+    const d=curr.salmo-prev.salmo;
+    changes.push({time:hora,title:'Salmonella: cambio en detecciones',detail:(d>0?'+':'')+d+' (total: '+curr.salmo+')',type:d>0?'alert':'mod'});
   }
-  if(curr.list !== prev.list){
-    const diff = curr.list - prev.list;
-    changes.push({ time: now, title: 'Listeria: cambio en detecciones', detail: (diff>0?'+':'')+diff+' detecciones (total: '+curr.list+')', type: diff>0?'alert':'mod' });
+  if(curr.list!==prev.list){
+    const d=curr.list-prev.list;
+    changes.push({time:hora,title:'Listeria: cambio en detecciones',detail:(d>0?'+':'')+d+' (total: '+curr.list+')',type:d>0?'alert':'mod'});
   }
-  if(curr.enteroAlto !== prev.enteroAlto){
-    const diff = curr.enteroAlto - prev.enteroAlto;
-    changes.push({ time: now, title: 'Enterobacterias: cambio en nivel alto', detail: (diff>0?'+':'')+diff+' muestreos ≥ 1.000 UFC/SM (total: '+curr.enteroAlto+')', type: diff>0?'alert':'mod' });
+  if(curr.enteroAlto!==prev.enteroAlto){
+    const d=curr.enteroAlto-prev.enteroAlto;
+    changes.push({time:hora,title:'Enterobacterias nivel alto: cambio',detail:(d>0?'+':'')+d+' muestreos ≥ 1.000 UFC/SM (total: '+curr.enteroAlto+')',type:d>0?'alert':'mod'});
   }
-  return changes.length ? changes : null;
+  return changes;
 }
 
 function addChangelog(changes){
-  changelog = [...changes, ...changelog].slice(0, 50);
+  changelog=[...changes,...changelog].slice(0,50);
   renderChangelog();
-  pendingNotif = true;
-  document.getElementById('notifBadge').style.display = 'flex';
-  document.getElementById('changelogBtn').style.display = 'flex';
+  document.getElementById('notifBadge').style.display='flex';
 }
 
 function renderChangelog(){
   if(!changelog.length){
-    document.getElementById('changelogBody').innerHTML = '<div class="no-changes">Aún no se detectaron cambios en esta sesión.</div>';
+    document.getElementById('changelogBody').innerHTML='<div class="no-changes">Sin cambios detectados en esta sesión.</div>';
     return;
   }
-  document.getElementById('changelogBody').innerHTML = changelog.map(c=>`
-    <div class="change-item">
-      <div class="change-time">${c.time}</div>
-      <div class="change-content">
-        <div class="change-title">${c.title}<span class="change-badge ${c.type==='new'?'cb-new':c.type==='alert'?'cb-alert':'cb-mod'}">${c.type==='new'?'Nuevo':c.type==='alert'?'Alerta':'Modificado'}</span></div>
-        <div class="change-detail">${c.detail}</div>
+  document.getElementById('changelogBody').innerHTML=changelog.map(c=>`
+    <div class="ch-item">
+      <div class="ch-time">${c.time}</div>
+      <div class="ch-content">
+        <div class="ch-title">${c.title}<span class="ch-badge ${c.type==='new'?'cb-new':c.type==='alert'?'cb-alert':'cb-mod'}">${c.type==='new'?'Nuevo':c.type==='alert'?'Alerta':'Modificado'}</span></div>
+        <div class="ch-detail">${c.detail}</div>
       </div>
     </div>`).join('');
 }
 
-function toggleChangelog(){
-  const w = document.getElementById('changelogWrap');
-  w.classList.toggle('open');
-}
+function toggleChangelog(){document.getElementById('changelogWrap').classList.toggle('open');}
+function clearNotif(){document.getElementById('notifBadge').style.display='none';}
 
-function clearNotif(){
-  pendingNotif = false;
-  document.getElementById('notifBadge').style.display = 'none';
-}
-
-// ── FETCH MULTI-HOJA desde Google Sheets ─────────────────────
-// Google Sheets CSV por gid — necesitamos hacer un fetch por cada hoja
-const SHEET_GIDS = {
-  'Planta Maní - Zona 1':  '333851133',
-  'Planta Maní - Zona 2':  null,
-  'Planta Maní - Zona 3':  null,
-  'Planta Maní - Zona 4':  null,
-  'Planta Pasta - Zona 1': null,
-  'Planta Pasta - Zona 2': null,
-  'Planta Pasta - Zona 3': null,
-  'Planta Pasta - Zona 4': null,
-};
-const BASE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQEyvxKcuKt515yX-GCOn_3AxBdOvs5iXwDmLo6OUDFoVg-8WmHFj-irIv6_CcDMw/pub?output=csv';
-
-async function fetchSingleSheet(url){
-  try{
-    const r = await fetch(url + '&t='+Date.now());
-    if(!r.ok) return null;
-    return await r.text();
-  } catch { return null; }
-}
-
-async function syncNow(){
-  setSyncStatus('loading', 'Sincronizando con Google Sheets...', 'Por favor esperá...');
-  clearInterval(countdownTimer);
-
-  try{
-    // Fetch la hoja publicada (URL base = primera hoja publicada)
-    const text = await fetchSingleSheet(BASE_CSV_URL);
-    if(!text) throw new Error('Sin respuesta del servidor');
-
-    const parsed = parseGSheetsCSV(text);
-
-    if(parsed.length > 5){
-      const changes = firstSync ? null : detectChanges(parsed);
-      if(firstSync){ lastSnapshot = makeSnapshot(parsed); firstSync = false; }
-      if(changes) addChangelog(changes);
-
-      DATA = parsed;
-      const hora = new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
-      setSyncStatus('ok',
-        'Google Sheets · '+DATA.length+' registros',
-        'Última sincronización: '+hora+' · Próxima en 5 min');
-      renderAll();
-    } else {
-      // Si solo obtiene una hoja con pocos datos, igual actualiza con datos base
-      // e informa al usuario
-      setSyncStatus('idle',
-        'Google Sheets conectado · Publicá todas las hojas para sincronización completa',
-        'Datos base: '+DATA.length+' registros · Próxima actualización en 5 min');
-      if(firstSync){ lastSnapshot = makeSnapshot(DATA); firstSync = false; }
-    }
-  } catch(e){
-    setSyncStatus('err',
-      'Error de conexión — usando datos en caché',
-      e.message + ' · Reintentando en 5 min');
-  }
-
-  startCountdown();
-}
-
-// ── TAB / SECTOR ──────────────────────────────────────────────
+// ── TABS / SECTORES ───────────────────────────────────────────
 function showTab(id,btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
   document.getElementById('tab-'+id).classList.add('on');
   btn.classList.add('on');
-  if(id==='entero') setTimeout(buildLine, 60);
+  if(id==='entero')setTimeout(buildLine,60);
 }
 
 function updateSectors(){
-  const fp = document.getElementById('fP').value;
-  const secs = [...new Set(DATA.filter(r=>{
-    if(fp==='Maní'&&!r.planta.includes('Maní')) return false;
-    if(fp==='Frito'&&!r.planta.includes('Frito')) return false;
+  const fp=document.getElementById('fP').value;
+  const secs=[...new Set(DATA.filter(r=>{
+    if(fp==='Maní'&&!r.planta.includes('Maní'))return false;
+    if(fp==='Frito'&&!r.planta.includes('Frito'))return false;
     return true;
   }).map(r=>r.sector).filter(Boolean))].sort();
-  const s = document.getElementById('fS');
-  s.innerHTML = '<option value="">Todos</option>'+secs.map(x=>`<option value="${x}">${x}</option>`).join('');
+  const s=document.getElementById('fS');
+  s.innerHTML='<option value="">Todos</option>'+secs.map(x=>`<option value="${x}">${x}</option>`).join('');
 }
 
 // ── HELPERS ───────────────────────────────────────────────────
-function hbar(lbl,val,maxV,color,display){
-  const pct = maxV>0 ? Math.min(100,Math.round(val/maxV*100)) : 0;
-  return `<div class="hbar"><div class="hbar-lbl" title="${lbl}">${lbl}</div><div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${color}"></div></div><div class="hbar-val">${display!==undefined?display:val}</div></div>`;
+function hbar(lbl,val,maxV,color,dv){
+  const pct=maxV>0?Math.min(100,Math.round(val/maxV*100)):0;
+  return `<div class="hbar"><div class="hbar-lbl" title="${lbl}">${lbl}</div><div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${color}"></div></div><div class="hbar-val">${dv!==undefined?dv:val}</div></div>`;
 }
 
 // ── RENDER ALL ────────────────────────────────────────────────
 function renderAll(){
   updateSectors();
-  renderKPIs(); renderDistBars(); renderResumenPlanta();
-  renderTrend(); renderListeria(); renderSalmonella();
+  renderKPIs();renderDistBars();renderResumenPlanta();
+  renderTrend();renderListeria();renderSalmonella();
   buildLine();
 }
 
 function renderKPIs(){
-  const total = DATA.length;
-  const plantas = [...new Set(DATA.map(r=>r.planta))];
-  const puntos  = [...new Set(DATA.map(r=>r.punto))].length;
-  const nums    = DATA.filter(r=>r.entero_num!==null&&r.entero_num!==undefined);
-  const alto    = nums.filter(r=>r.entero_num>=1000).length;
-  const med     = nums.filter(r=>r.entero_num>=100&&r.entero_num<1000).length;
-  const ok      = nums.filter(r=>r.entero_num<100).length;
-  const salmo   = DATA.filter(r=>r.salmo_det).length;
-  const salmoZ  = [...new Set(DATA.filter(r=>r.salmo_det).map(r=>r.planta+' '+r.zona))];
-  document.getElementById('kTotal').textContent       = total;
-  document.getElementById('kTotalSub').textContent    = plantas.length+' plantas · '+[...new Set(DATA.map(r=>r.zona))].length+' zonas';
-  document.getElementById('kPuntos').textContent      = puntos;
-  document.getElementById('kEnteroAlto').textContent  = alto;
-  document.getElementById('kEnteroAltoPct').textContent = total?Math.round(alto/total*100)+'% de muestreos':'—';
-  document.getElementById('kSalmo').textContent       = salmo;
-  document.getElementById('kSalmoSub').textContent    = salmoZ[0]||'Sin detecciones';
-  document.getElementById('kEnteroN').textContent     = nums.length;
-  document.getElementById('kEnteroNSub').textContent  = 'De '+total+' muestreos';
-  document.getElementById('kEnteroA').textContent     = alto;
-  document.getElementById('kEnteroAPct').textContent  = nums.length?Math.round(alto/nums.length*100)+'% del total':'—';
-  document.getElementById('kEnteroM').textContent     = med;
-  document.getElementById('kEnteroMPct').textContent  = nums.length?Math.round(med/nums.length*100)+'% del total':'—';
-  document.getElementById('kEnteroO').textContent     = ok;
-  document.getElementById('kEnteroOPct').textContent  = nums.length?Math.round(ok/nums.length*100)+'% del total':'—';
+  const total=DATA.length;
+  const plantas=[...new Set(DATA.map(r=>r.planta))];
+  const puntos=[...new Set(DATA.map(r=>r.punto))].length;
+  const nums=DATA.filter(r=>r.entero_num!==null&&r.entero_num!==undefined);
+  const alto=nums.filter(r=>r.entero_num>=1000).length;
+  const med=nums.filter(r=>r.entero_num>=100&&r.entero_num<1000).length;
+  const ok=nums.filter(r=>r.entero_num<100).length;
+  const salmo=DATA.filter(r=>r.salmo_det).length;
+  const salmoZ=[...new Set(DATA.filter(r=>r.salmo_det).map(r=>r.planta+' '+r.zona))];
+  document.getElementById('kTotal').textContent=total;
+  document.getElementById('kTotalSub').textContent=plantas.length+' plantas · '+[...new Set(DATA.map(r=>r.zona))].length+' zonas';
+  document.getElementById('kPuntos').textContent=puntos;
+  document.getElementById('kEnteroAlto').textContent=alto;
+  document.getElementById('kEnteroAltoPct').textContent=total?Math.round(alto/total*100)+'% de muestreos':'—';
+  document.getElementById('kSalmo').textContent=salmo;
+  document.getElementById('kSalmoSub').textContent=salmoZ[0]||'Sin detecciones';
+  document.getElementById('kEnteroN').textContent=nums.length;
+  document.getElementById('kEnteroNSub').textContent='De '+total+' muestreos';
+  document.getElementById('kEnteroA').textContent=alto;
+  document.getElementById('kEnteroAPct').textContent=nums.length?Math.round(alto/nums.length*100)+'% del total':'—';
+  document.getElementById('kEnteroM').textContent=med;
+  document.getElementById('kEnteroMPct').textContent=nums.length?Math.round(med/nums.length*100)+'% del total':'—';
+  document.getElementById('kEnteroO').textContent=ok;
+  document.getElementById('kEnteroOPct').textContent=nums.length?Math.round(ok/nums.length*100)+'% del total':'—';
 }
 
 function renderDistBars(){
-  const plantas = [...new Set(DATA.map(r=>r.planta))];
-  const cn = plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p).length})).sort((a,b)=>b.n-a.n);
-  const cs = plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p&&r.salmo_det).length})).sort((a,b)=>b.n-a.n);
-  const cl = plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p&&r.list_det).length})).sort((a,b)=>b.n-a.n);
+  const plantas=[...new Set(DATA.map(r=>r.planta))];
+  const cn=plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p).length})).sort((a,b)=>b.n-a.n);
+  const cs=plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p&&r.salmo_det).length})).sort((a,b)=>b.n-a.n);
+  const cl=plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p&&r.list_det).length})).sort((a,b)=>b.n-a.n);
   let h='';
   cn.forEach(c=>h+=hbar(c.p.replace('Planta ',''),c.n,Math.max(1,...cn.map(x=>x.n)),'#1a56a0'));
   h+='<div class="divider"></div><div class="sec-lbl">Salmonella detectada</div>';
@@ -677,11 +633,11 @@ function renderDistBars(){
 }
 
 function renderResumenPlanta(){
-  const plantas = [...new Set(DATA.map(r=>r.planta))];
+  const plantas=[...new Set(DATA.map(r=>r.planta))];
   let h='';
   plantas.forEach((p,i)=>{
     const d=DATA.filter(r=>r.planta===p);
-    const sal=d.filter(r=>r.salmo_det).length, lst=d.filter(r=>r.list_det).length;
+    const sal=d.filter(r=>r.salmo_det).length,lst=d.filter(r=>r.list_det).length;
     const alto=d.filter(r=>r.entero_num!==null&&r.entero_num>=1000).length;
     h+=`${i>0?'<div class="divider"></div>':''}<div class="sec-lbl">${p}</div>
     <div class="stat-list">
@@ -698,17 +654,17 @@ function renderTrend(){
   const byM={};
   DATA.forEach(r=>{
     const d=getD(r);
-    if(!d||r.entero_num===null||r.entero_num===undefined) return;
+    if(!d||r.entero_num===null||r.entero_num===undefined)return;
     const k=d.getFullYear()+'-'+(d.getMonth()+1);
-    if(!byM[k]) byM[k]=[];
+    if(!byM[k])byM[k]=[];
     byM[k].push(r.entero_num);
   });
   const keys=Object.keys(byM).sort();
-  if(!keys.length) return;
+  if(!keys.length)return;
   const labels=keys.map(k=>{const[y,m]=k.split('-');return new Date(+y,+m-1,1).toLocaleDateString('es-AR',{month:'short',year:'numeric'});});
   const vals=keys.map(k=>{const a=byM[k];return Math.round(a.reduce((s,v)=>s+v,0)/a.length);});
   const ctx=document.getElementById('trendChart');
-  if(!ctx) return;
+  if(!ctx)return;
   if(trendInst){trendInst.destroy();trendInst=null;}
   trendInst=new Chart(ctx,{type:'line',data:{labels,datasets:[
     {label:'Prom',data:vals,borderColor:'#1a56a0',backgroundColor:'rgba(26,86,160,0.07)',borderWidth:2,
@@ -731,15 +687,15 @@ function buildLine(){
   const lim=parseInt(document.getElementById('fL').value);
   const filtered=DATA.filter(r=>{
     const d=getD(r);
-    if(fy&&(!d||d.getFullYear()!==+fy)) return false;
-    if(fp==='Maní'&&!r.planta.includes('Maní')) return false;
-    if(fp==='Frito'&&!r.planta.includes('Frito')) return false;
-    if(fz&&r.zona!==fz) return false;
-    if(fs&&r.sector!==fs) return false;
+    if(fy&&(!d||d.getFullYear()!==+fy))return false;
+    if(fp==='Maní'&&!r.planta.includes('Maní'))return false;
+    if(fp==='Frito'&&!r.planta.includes('Frito'))return false;
+    if(fz&&r.zona!==fz)return false;
+    if(fs&&r.sector!==fs)return false;
     return r.entero_num!==null&&r.entero_num!==undefined&&r.entero_num>=lim;
   }).sort((a,b)=>(getD(a)||0)-(getD(b)||0));
   const ctx=document.getElementById('lineChart');
-  if(!ctx) return;
+  if(!ctx)return;
   if(lineInst){lineInst.destroy();lineInst=null;}
   const note=document.getElementById('chartNote');
   if(!filtered.length){
@@ -769,14 +725,17 @@ function buildLine(){
 
 function renderListeria(){
   const dets=DATA.filter(r=>r.list_det).sort((a,b)=>(getD(b)||0)-(getD(a)||0));
-  document.getElementById('kListTotal').textContent=[...dets].length||'0';
+  document.getElementById('kListTotal').textContent=dets.length||'0';
   document.getElementById('kListPlantas').textContent=[...new Set(dets.map(r=>r.planta))].length||'0';
   if(dets[0]){
     const d0=getD(dets[0]);
     document.getElementById('kListUltimo').textContent=d0?d0.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'2-digit'}):'—';
     const mismo=dets.filter(r=>{const d=getD(r);return d&&d0&&d.toDateString()===d0.toDateString();}).length;
     document.getElementById('kListUltimoSub').textContent=mismo+' punto'+(mismo>1?'s':'')+' en simultáneo';
-  } else { document.getElementById('kListUltimo').textContent='—'; document.getElementById('kListUltimoSub').textContent='Sin detecciones'; }
+  } else {
+    document.getElementById('kListUltimo').textContent='—';
+    document.getElementById('kListUltimoSub').textContent='Sin detecciones';
+  }
   document.getElementById('listeriaTbody').innerHTML=dets.length
     ?dets.map(r=>`<tr><td>${r.planta}</td><td>${r.zona}</td><td>${r.sector}</td><td title="${r.punto}">${r.punto}</td><td>${fmtFecha(getD(r))}</td><td><span class="pill amber">${r.listeria.toUpperCase()}</span></td></tr>`).join('')
     :'<tr><td colspan="6" style="color:var(--ink3);text-align:center;padding:14px">Sin detecciones registradas</td></tr>';
@@ -788,7 +747,7 @@ function renderListeria(){
     const d0=getD(dets[0]);
     const mismo=dets.filter(r=>{const d=getD(r);return d&&d0&&d.toDateString()===d0.toDateString();}).length;
     ins.style.display='block';
-    ins.innerHTML=`<strong>Patrón detectado:</strong> ${mismo} de ${dets.length} detecciones ocurrieron el ${fmtFecha(d0)}. Revisar protocolo de desinfección de pisos y equipos de limpieza en zonas PE.`;
+    ins.innerHTML=`<strong>Patrón detectado:</strong> ${mismo} de ${dets.length} detecciones ocurrieron el ${fmtFecha(d0)}. Revisar protocolo de desinfección en zonas PE.`;
   } else ins.style.display='none';
 }
 
@@ -800,13 +759,19 @@ function renderSalmonella(){
   if(topP){
     document.getElementById('kSalmoPlanta').textContent=topP[0].replace('Planta ','');
     document.getElementById('kSalmoPlantaSub').textContent=[...new Set(dets.filter(r=>r.planta===topP[0]).map(r=>r.zona+' · '+r.sector))][0]||'';
-  } else { document.getElementById('kSalmoPlanta').textContent='—'; document.getElementById('kSalmoPlantaSub').textContent='Sin detecciones'; }
+  } else {
+    document.getElementById('kSalmoPlanta').textContent='—';
+    document.getElementById('kSalmoPlantaSub').textContent='Sin detecciones';
+  }
   const byPunto={};dets.forEach(r=>{byPunto[r.punto]=(byPunto[r.punto]||0)+1;});
   const topPunto=Object.entries(byPunto).sort((a,b)=>b[1]-a[1])[0];
   if(topPunto){
     document.getElementById('kSalmoRec').textContent=topPunto[1]+' ×';
     document.getElementById('kSalmoRecSub').textContent=topPunto[0].substring(0,30)+(topPunto[0].length>30?'…':'');
-  } else { document.getElementById('kSalmoRec').textContent='—'; document.getElementById('kSalmoRecSub').textContent='Sin detecciones'; }
+  } else {
+    document.getElementById('kSalmoRec').textContent='—';
+    document.getElementById('kSalmoRecSub').textContent='Sin detecciones';
+  }
   document.getElementById('salmonellaTbody').innerHTML=dets.length
     ?dets.map(r=>`<tr><td>${r.planta}</td><td>${r.zona}</td><td>${r.sector}</td><td title="${r.punto}">${r.punto}</td><td>${fmtFecha(getD(r))}</td><td><span class="pill red">${r.salmonella.toUpperCase()}</span></td></tr>`).join('')
     :'<tr><td colspan="6" style="color:var(--ink3);text-align:center;padding:14px">Sin detecciones registradas</td></tr>';
@@ -831,15 +796,9 @@ function exportPDF(){
   }).catch(()=>{btn.innerHTML=orig;btn.disabled=false;});
 }
 
-// ── INIT ──────────────────────────────────────────────────────
-window.addEventListener('load',()=>{
-  renderAll();
-  // Mostrar botón changelog desde el inicio
-  document.getElementById('changelogBtn').style.display='flex';
-  renderChangelog();
-  // Primera sincronización automática con Google Sheets
-  setTimeout(syncNow, 1500);
-});
+// ── ARRANQUE ──────────────────────────────────────────────────
+window.addEventListener('load',()=>syncAll(true));
+
 </script>
 </body>
 </html>
