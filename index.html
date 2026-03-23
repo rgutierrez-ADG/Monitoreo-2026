@@ -18,7 +18,6 @@
 }
 body{font-family:system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var(--ink);min-height:100vh;padding:20px}
 .shell{border:0.5px solid rgba(0,0,0,0.12);border-radius:14px;overflow:hidden;background:var(--surface);max-width:1120px;margin:0 auto}
-
 .header{position:relative;padding:20px 24px;display:grid;grid-template-columns:120px 1fr 220px;align-items:center;min-height:88px;overflow:hidden}
 .hbg{position:absolute;inset:0;background:linear-gradient(135deg,#0a2240 0%,#1a56a0 55%,#1565c0 100%);z-index:0}
 .hbg-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=1200&q=60&auto=format');background-size:cover;background-position:center;opacity:.17;z-index:1}
@@ -38,7 +37,6 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var
 .lu-lbl{font-size:9px;color:rgba(255,255,255,.42);text-transform:uppercase;letter-spacing:.06em}
 .lu-fecha{font-size:11px;color:rgba(255,255,255,.82);font-weight:500;margin-top:1px}
 .lu-hora{font-size:13px;color:#fff;font-weight:500}
-
 .sync-bar{display:flex;align-items:center;gap:10px;padding:8px 20px;background:#f0f4f8;border-bottom:0.5px solid var(--border);flex-wrap:wrap}
 .sync-left{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
 .sync-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
@@ -61,7 +59,6 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var
 .countdown{font-size:10px;color:var(--ink3);display:flex;align-items:center;gap:5px}
 .countdown-bar{width:40px;height:3px;background:var(--surface3);border-radius:2px;overflow:hidden}
 .countdown-fill{height:100%;background:var(--blue);border-radius:2px;transition:width 1s linear}
-
 .changelog-wrap{display:none;border-bottom:0.5px solid var(--border);background:var(--surface)}
 .changelog-wrap.open{display:block}
 .changelog-header{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;border-bottom:0.5px solid var(--border)}
@@ -78,12 +75,10 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var
 .cb-mod{background:#fef3c7;color:#92400e}
 .cb-alert{background:#fee2e2;color:#991b1b}
 .no-changes{font-size:12px;color:var(--ink3);text-align:center;padding:20px}
-
 .loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;gap:16px}
 .loading-spinner{width:36px;height:36px;border:3px solid var(--surface3);border-top-color:var(--blue);border-radius:50%;animation:spin 0.8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading-text{font-size:13px;color:var(--ink3)}
-
+.loading-text{font-size:13px;color:var(--ink3);text-align:center}
 .tabs{display:flex;background:var(--surface2);border-bottom:0.5px solid var(--border);padding:0 24px;align-items:center}
 .tab{font-size:12px;color:var(--ink3);padding:11px 15px;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;white-space:nowrap}
 .tab:hover{color:var(--ink2)}.tab.on{color:var(--blue);border-bottom-color:var(--blue);font-weight:500}
@@ -91,7 +86,6 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var
 .btn-export{background:var(--blue);color:#fff;border:none;font-size:11px;padding:6px 13px;border-radius:var(--radius-sm);cursor:pointer;font-family:inherit;font-weight:500;display:flex;align-items:center;gap:5px;transition:opacity .15s}
 .btn-export:hover{opacity:.85}
 .btn-export svg{width:12px;height:12px}
-
 .body{padding:18px 24px;background:var(--surface2)}
 .panel{display:none}.panel.on{display:block}
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
@@ -151,7 +145,6 @@ select:focus{border-color:var(--blue)}
 </head>
 <body>
 <div class="shell" id="dashRoot">
-
   <div class="header">
     <div class="hbg"></div><div class="hbg-img"></div><div class="hbg-ov"></div>
     <div class="hz hdr-id"><span class="sgi">SGI</span><span class="rsig">R-SIG-MA 01</span></div>
@@ -173,7 +166,7 @@ select:focus{border-color:var(--blue)}
     <div class="sync-left">
       <span class="sync-dot loading" id="syncDot"></span>
       <div class="sync-info">
-        <span class="sync-msg" id="syncMsg">Cargando datos desde Google Sheets...</span>
+        <span class="sync-msg" id="syncMsg">Cargando datos...</span>
         <span class="sync-sub" id="syncSub">Actualización automática cada 5 minutos</span>
       </div>
     </div>
@@ -187,7 +180,7 @@ select:focus{border-color:var(--blue)}
         Últimos cambios
         <span class="notif-badge" id="notifBadge" style="display:none">!</span>
       </button>
-      <button class="btn-sm primary" onclick="syncAll(true)">
+      <button class="btn-sm primary" onclick="syncNow()">
         <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M10 6A4 4 0 1 1 6 2M10 2v4h-4"/></svg>
         Actualizar ahora
       </button>
@@ -206,7 +199,7 @@ select:focus{border-color:var(--blue)}
 
   <div id="loadingScreen" class="loading-screen">
     <div class="loading-spinner"></div>
-    <div class="loading-text">Conectando con Google Sheets — cargando las 8 hojas...</div>
+    <div class="loading-text" id="loadingText">Conectando con Google Sheets...</div>
   </div>
 
   <div id="mainContent" style="display:none">
@@ -221,7 +214,6 @@ select:focus{border-color:var(--blue)}
         Exportar PDF
       </button>
     </div>
-
     <div class="body">
       <div id="tab-resumen" class="panel on">
         <div class="kpis">
@@ -245,7 +237,6 @@ select:focus{border-color:var(--blue)}
           <div class="card"><div class="card-title">Resumen por planta</div><div id="resumenPlanta"></div></div>
         </div>
       </div>
-
       <div id="tab-entero" class="panel">
         <div class="kpis">
           <div class="kpi blue"><div class="k-lbl">Con dato numérico</div><div class="k-val" id="kEnteroN">—</div><div class="k-sub" id="kEnteroNSub">—</div></div>
@@ -286,7 +277,6 @@ select:focus{border-color:var(--blue)}
           <div class="chart-note" id="chartNote"></div>
         </div>
       </div>
-
       <div id="tab-listeria" class="panel">
         <div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr))">
           <div class="kpi amber"><div class="k-lbl">Total detecciones Listeria</div><div class="k-val" id="kListTotal">—</div><div class="k-sub">Todas las plantas</div></div>
@@ -306,7 +296,6 @@ select:focus{border-color:var(--blue)}
           <div class="insight amber" id="listeriaInsight" style="margin-top:12px;display:none"></div>
         </div>
       </div>
-
       <div id="tab-salmonella" class="panel">
         <div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr))">
           <div class="kpi red"><div class="k-lbl">Total detecciones Salmonella</div><div class="k-val" id="kSalmoTotal">—</div><div class="k-sub">Todas las plantas</div></div>
@@ -335,218 +324,158 @@ select:focus{border-color:var(--blue)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 
-// ── CONFIG: 8 hojas con sus GIDs reales ──────────────────────
-const BASE = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuoYjfVjyjd2OJNNejX2675oSQrjDiJJJuiBM3RQBqdYoD5yvanthhld6dajX4icsRmYvlmIBxgSko/pub?output=csv&single=true&gid=';
-const SHEETS = [
-  { name:'Planta Maní - Zona 1',  planta:'Planta Maní (Tostado)', zona:'Zona 1', gid:'333851133'  },
-  { name:'Planta Maní - Zona 2',  planta:'Planta Maní (Tostado)', zona:'Zona 2', gid:'652406869'  },
-  { name:'Planta Maní - Zona 3',  planta:'Planta Maní (Tostado)', zona:'Zona 3', gid:'1737265871' },
-  { name:'Planta Maní - Zona 4',  planta:'Planta Maní (Tostado)', zona:'Zona 4', gid:'1677830361' },
-  { name:'Planta Pasta - Zona 1', planta:'Planta Frito/Pasta',    zona:'Zona 1', gid:'1729143154' },
-  { name:'Planta Pasta - Zona 2', planta:'Planta Frito/Pasta',    zona:'Zona 2', gid:'1229958017' },
-  { name:'Planta Pasta - Zona 3', planta:'Planta Frito/Pasta',    zona:'Zona 3', gid:'2119775297' },
-  { name:'Planta Pasta - Zona 4', planta:'Planta Frito/Pasta',    zona:'Zona 4', gid:'85665204'   },
-];
-const SYNC_SECS = 300; // 5 minutos
+// ── CONFIG ────────────────────────────────────────────────────
+const API_URL = 'https://script.google.com/macros/s/AKfycbwd2oSLVDOFMEgsr3pXOaYuAwCyyMOuJ5LM_W_YBVxHAH1bbAbtyYhjL4C-RkPlOA/exec';
+const SYNC_SECS = 300;
 
 // ── ESTADO ────────────────────────────────────────────────────
 let DATA = [];
 let trendInst = null, lineInst = null;
-let changelog = [];
-let lastSnapshot = '';
-let firstLoad = true;
-let countdownSecs = SYNC_SECS;
-let countdownTimer = null;
+let changelog = [], lastSnapshot = '', firstLoad = true;
+let countdownSecs = SYNC_SECS, countdownTimer = null;
 
 // ── RELOJ ─────────────────────────────────────────────────────
 function tick(){
-  const n=new Date();
-  document.getElementById('luFecha').textContent=n.toLocaleDateString('es-AR',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});
-  document.getElementById('luHora').textContent=n.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const n = new Date();
+  document.getElementById('luFecha').textContent = n.toLocaleDateString('es-AR',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});
+  document.getElementById('luHora').textContent  = n.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
 }
-tick(); setInterval(tick,1000);
+tick(); setInterval(tick, 1000);
 
-// ── SYNC STATUS ───────────────────────────────────────────────
-function setSyncStatus(type,msg,sub){
-  document.getElementById('syncDot').className='sync-dot '+type;
-  document.getElementById('syncMsg').textContent=msg;
-  if(sub!==undefined) document.getElementById('syncSub').textContent=sub;
+// ── STATUS ────────────────────────────────────────────────────
+function setSyncStatus(type, msg, sub){
+  document.getElementById('syncDot').className = 'sync-dot ' + type;
+  document.getElementById('syncMsg').textContent = msg;
+  if(sub !== undefined) document.getElementById('syncSub').textContent = sub;
 }
 
 // ── COUNTDOWN ─────────────────────────────────────────────────
 function startCountdown(){
-  countdownSecs=SYNC_SECS;
-  document.getElementById('countdownWrap').style.display='flex';
+  countdownSecs = SYNC_SECS;
+  document.getElementById('countdownWrap').style.display = 'flex';
   clearInterval(countdownTimer);
-  countdownTimer=setInterval(()=>{
+  countdownTimer = setInterval(()=>{
     countdownSecs--;
-    if(countdownSecs<=0){clearInterval(countdownTimer);syncAll(false);return;}
-    const m=Math.floor(countdownSecs/60), s=countdownSecs%60;
-    document.getElementById('countdownText').textContent=m+':'+(s<10?'0':'')+s;
-    document.getElementById('countdownFill').style.width=(countdownSecs/SYNC_SECS*100)+'%';
-  },1000);
+    if(countdownSecs <= 0){ clearInterval(countdownTimer); syncNow(); return; }
+    const m = Math.floor(countdownSecs/60), s = countdownSecs % 60;
+    document.getElementById('countdownText').textContent = m + ':' + (s<10?'0':'') + s;
+    document.getElementById('countdownFill').style.width = (countdownSecs/SYNC_SECS*100) + '%';
+  }, 1000);
 }
 
-// ── CSV PARSER ────────────────────────────────────────────────
-function splitCSV(line){
-  const cols=[]; let cur='',inQ=false;
-  for(const ch of line){
-    if(ch==='"'){inQ=!inQ;}
-    else if(ch===','&&!inQ){cols.push(cur.trim());cur='';}
-    else{cur+=ch;}
-  }
-  cols.push(cur.trim()); return cols;
-}
-
+// ── HELPERS ───────────────────────────────────────────────────
 function parseEntero(v){
-  if(!v||['-',''].includes(String(v).trim().toLowerCase()))return null;
-  const s=String(v).trim().toUpperCase().replace(',','.');
-  if(s==='<10')return 5;
-  const n=parseFloat(s.replace(/^NE\s*/,''));
-  return isNaN(n)?null:n;
+  if(!v || ['-',''].includes(String(v).trim().toLowerCase())) return null;
+  const s = String(v).trim().toUpperCase().replace(',','.');
+  if(s === '<10') return 5;
+  const n = parseFloat(s.replace(/^NE\s*/,''));
+  return isNaN(n) ? null : n;
 }
-
 function parseFecha(v){
-  const m=String(v).match(/(\d{1,2})[/\-](\d{1,2})[/\-](\d{2,4})/);
-  if(!m)return null;
-  let[,d,mo,y]=m; if(y.length===2)y='20'+y;
-  return new Date(+y,+mo-1,+d);
+  if(!v) return null;
+  const d = new Date(v);
+  return isNaN(d) ? null : d;
 }
+function fmtFecha(d){ return d ? d.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'}) : '—'; }
+function getD(r){ return r._fecha instanceof Date ? r._fecha : (r.fecha ? parseFecha(r.fecha) : null); }
 
-function fmtFecha(d){return d?d.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'}):'—';}
-function getD(r){return r.fechaObj instanceof Date?r.fechaObj:(r.fecha?new Date(r.fecha):null);}
-
-function parseSheetCSV(text, planta, zona){
-  const lines=text.split('\n');
-  const rows=[]; let sector='', pastHeader=false;
-  for(let i=0;i<lines.length;i++){
-    const cols=splitCSV(lines[i]);
-    const c0=(cols[0]||'').trim(), c1=(cols[1]||'').trim();
-    // Fila de encabezado
-    if(c0==='Sector'||c1==='Punto de Muestreo'){pastHeader=true;continue;}
-    if(!pastHeader)continue;
-    // Fila de sector
-    if(c0&&!c1){sector=c0;continue;}
-    if(!c1)continue;
-    const sal=(cols[3]||'').trim();
-    const ent_raw=(cols[4]||'').trim();
-    const lst=(cols[5]||'').trim();
-    const fechaObj=parseFecha(cols[2]||'');
-    rows.push({
-      planta,zona,sector,punto:c1,
-      fecha:fechaObj?fechaObj.toISOString().slice(0,10):null,
-      fechaObj,
-      salmonella:sal,entero_raw:ent_raw,
-      entero_num:parseEntero(ent_raw),listeria:lst,
-      salmo_det:sal.toLowerCase()==='detectado',
-      list_det:['detectado','d'].includes(lst.toLowerCase()),
-    });
-  }
-  return rows;
-}
-
-// ── FETCH UNA HOJA ────────────────────────────────────────────
-async function fetchSheet(sheet){
-  const url=BASE+sheet.gid+'&t='+Date.now();
-  const resp=await fetch(url);
-  if(!resp.ok) throw new Error('HTTP '+resp.status+' en '+sheet.name);
-  const text=await resp.text();
-  return parseSheetCSV(text,sheet.planta,sheet.zona);
-}
-
-// ── SYNC TODAS LAS HOJAS ──────────────────────────────────────
-async function syncAll(manual=false){
+// ── FETCH desde Apps Script ───────────────────────────────────
+async function syncNow(){
   clearInterval(countdownTimer);
-  setSyncStatus('loading',
-    manual?'Actualizando desde Google Sheets...':'Sincronización automática en curso...',
-    'Cargando '+SHEETS.length+' hojas...');
-
+  setSyncStatus('loading', 'Actualizando datos...', 'Conectando con Google Sheets...');
   try{
-    // Fetch en paralelo — todas las hojas al mismo tiempo
-    const results = await Promise.all(SHEETS.map(s=>fetchSheet(s)));
-    const newData = results.flat();
+    const resp = await fetch(API_URL + '?t=' + Date.now());
+    if(!resp.ok) throw new Error('HTTP ' + resp.status);
+    const raw = await resp.json();
 
-    if(newData.length===0) throw new Error('Sin datos recibidos');
+    // Normalizar datos
+    const newData = raw.map(r => ({
+      ...r,
+      entero_num: parseEntero(r.entero_raw),
+      salmo_det:  String(r.salmonella||'').toLowerCase() === 'detectado',
+      list_det:   ['detectado','d'].includes(String(r.listeria||'').toLowerCase()),
+      _fecha:     parseFecha(r.fecha),
+    }));
+
+    if(newData.length === 0) throw new Error('Sin datos recibidos del servidor');
 
     // Detectar cambios
-    const newSnap=makeSnapshot(newData);
-    if(!firstLoad && lastSnapshot && lastSnapshot!==newSnap){
-      const changes=detectChanges(lastSnapshot,newSnap,newData);
+    const newSnap = makeSnapshot(newData);
+    if(!firstLoad && lastSnapshot && lastSnapshot !== newSnap){
+      const changes = detectChanges(lastSnapshot, newSnap);
       if(changes.length) addChangelog(changes);
     }
-    lastSnapshot=newSnap;
-    DATA=newData;
+    lastSnapshot = newSnap;
+    DATA = newData;
 
     if(firstLoad){
-      firstLoad=false;
-      document.getElementById('loadingScreen').style.display='none';
-      document.getElementById('mainContent').style.display='block';
-      document.getElementById('changelogBtn').style.display='flex';
+      firstLoad = false;
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+      document.getElementById('changelogBtn').style.display = 'flex';
     }
 
-    const hora=new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+    const hora = new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
     setSyncStatus('ok',
-      'Google Sheets · '+DATA.length+' registros · actualizado '+hora,
+      'Sincronizado · ' + DATA.length + ' registros · ' + hora,
       'Próxima actualización automática en 5 minutos');
     renderAll();
-  }catch(e){
-    setSyncStatus('err','Error al conectar: '+e.message,'Reintentando en 5 minutos');
+
+  } catch(e){
+    setSyncStatus('err', 'Error: ' + e.message, 'Reintentando en 5 minutos');
     if(firstLoad){
-      document.getElementById('loadingScreen').innerHTML=
-        '<div style="font-size:13px;color:var(--red);text-align:center">'+
-        'No se pudo conectar con Google Sheets.<br>'+
-        'Verificá que las hojas estén publicadas correctamente.<br><br>'+
-        '<button class="btn-sm primary" onclick="syncAll(true)" style="margin:0 auto">Reintentar</button></div>';
+      document.getElementById('loadingText').innerHTML =
+        'No se pudo conectar con Google Sheets.<br><br>' +
+        '<button onclick="syncNow()" style="padding:8px 16px;background:#1a56a0;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px">Reintentar</button>';
     }
   }
   startCountdown();
 }
 
-// ── SNAPSHOT y DETECCIÓN DE CAMBIOS ──────────────────────────
+// ── CHANGELOG ─────────────────────────────────────────────────
 function makeSnapshot(data){
   return JSON.stringify({
-    total:data.length,
-    salmo:data.filter(r=>r.salmo_det).length,
-    list:data.filter(r=>r.list_det).length,
-    enteroAlto:data.filter(r=>r.entero_num!==null&&r.entero_num>=1000).length,
+    total: data.length,
+    salmo: data.filter(r=>r.salmo_det).length,
+    list:  data.filter(r=>r.list_det).length,
+    alto:  data.filter(r=>r.entero_num!==null&&r.entero_num>=1000).length,
   });
 }
 
-function detectChanges(prevSnap,currSnap,newData){
-  const prev=JSON.parse(prevSnap), curr=JSON.parse(currSnap);
-  const changes=[];
-  const hora=new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
-  if(curr.total!==prev.total){
-    const d=curr.total-prev.total;
-    changes.push({time:hora,title:'Nuevos muestreos cargados',detail:(d>0?'+':'')+d+' registros (total: '+curr.total+')',type:'new'});
+function detectChanges(prevSnap, currSnap){
+  const prev = JSON.parse(prevSnap), curr = JSON.parse(currSnap);
+  const changes = [], hora = new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+  if(curr.total !== prev.total){
+    const d = curr.total - prev.total;
+    changes.push({time:hora, title:'Nuevos muestreos cargados', detail:(d>0?'+':'')+d+' registros (total: '+curr.total+')', type:'new'});
   }
-  if(curr.salmo!==prev.salmo){
-    const d=curr.salmo-prev.salmo;
-    changes.push({time:hora,title:'Salmonella: cambio en detecciones',detail:(d>0?'+':'')+d+' (total: '+curr.salmo+')',type:d>0?'alert':'mod'});
+  if(curr.salmo !== prev.salmo){
+    const d = curr.salmo - prev.salmo;
+    changes.push({time:hora, title:'Salmonella: cambio en detecciones', detail:(d>0?'+':'')+d+' (total: '+curr.salmo+')', type:d>0?'alert':'mod'});
   }
-  if(curr.list!==prev.list){
-    const d=curr.list-prev.list;
-    changes.push({time:hora,title:'Listeria: cambio en detecciones',detail:(d>0?'+':'')+d+' (total: '+curr.list+')',type:d>0?'alert':'mod'});
+  if(curr.list !== prev.list){
+    const d = curr.list - prev.list;
+    changes.push({time:hora, title:'Listeria: cambio en detecciones', detail:(d>0?'+':'')+d+' (total: '+curr.list+')', type:d>0?'alert':'mod'});
   }
-  if(curr.enteroAlto!==prev.enteroAlto){
-    const d=curr.enteroAlto-prev.enteroAlto;
-    changes.push({time:hora,title:'Enterobacterias nivel alto: cambio',detail:(d>0?'+':'')+d+' muestreos ≥ 1.000 UFC/SM (total: '+curr.enteroAlto+')',type:d>0?'alert':'mod'});
+  if(curr.alto !== prev.alto){
+    const d = curr.alto - prev.alto;
+    changes.push({time:hora, title:'Enterobacterias nivel alto: cambio', detail:(d>0?'+':'')+d+' muestreos ≥ 1.000 UFC/SM', type:d>0?'alert':'mod'});
   }
   return changes;
 }
 
 function addChangelog(changes){
-  changelog=[...changes,...changelog].slice(0,50);
+  changelog = [...changes, ...changelog].slice(0,50);
   renderChangelog();
-  document.getElementById('notifBadge').style.display='flex';
+  document.getElementById('notifBadge').style.display = 'flex';
 }
 
 function renderChangelog(){
   if(!changelog.length){
-    document.getElementById('changelogBody').innerHTML='<div class="no-changes">Sin cambios detectados en esta sesión.</div>';
+    document.getElementById('changelogBody').innerHTML = '<div class="no-changes">Sin cambios detectados en esta sesión.</div>';
     return;
   }
-  document.getElementById('changelogBody').innerHTML=changelog.map(c=>`
+  document.getElementById('changelogBody').innerHTML = changelog.map(c=>`
     <div class="ch-item">
       <div class="ch-time">${c.time}</div>
       <div class="ch-content">
@@ -556,90 +485,89 @@ function renderChangelog(){
     </div>`).join('');
 }
 
-function toggleChangelog(){document.getElementById('changelogWrap').classList.toggle('open');}
-function clearNotif(){document.getElementById('notifBadge').style.display='none';}
+function toggleChangelog(){ document.getElementById('changelogWrap').classList.toggle('open'); }
+function clearNotif(){ document.getElementById('notifBadge').style.display = 'none'; }
 
 // ── TABS / SECTORES ───────────────────────────────────────────
-function showTab(id,btn){
+function showTab(id, btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
   document.getElementById('tab-'+id).classList.add('on');
   btn.classList.add('on');
-  if(id==='entero')setTimeout(buildLine,60);
+  if(id==='entero') setTimeout(buildLine, 60);
 }
 
 function updateSectors(){
-  const fp=document.getElementById('fP').value;
-  const secs=[...new Set(DATA.filter(r=>{
-    if(fp==='Maní'&&!r.planta.includes('Maní'))return false;
-    if(fp==='Frito'&&!r.planta.includes('Frito'))return false;
+  const fp = document.getElementById('fP').value;
+  const secs = [...new Set(DATA.filter(r=>{
+    if(fp==='Maní' && !r.planta.includes('Maní')) return false;
+    if(fp==='Frito' && !r.planta.includes('Frito')) return false;
     return true;
   }).map(r=>r.sector).filter(Boolean))].sort();
-  const s=document.getElementById('fS');
-  s.innerHTML='<option value="">Todos</option>'+secs.map(x=>`<option value="${x}">${x}</option>`).join('');
+  const s = document.getElementById('fS');
+  s.innerHTML = '<option value="">Todos</option>' + secs.map(x=>`<option value="${x}">${x}</option>`).join('');
 }
 
-// ── HELPERS ───────────────────────────────────────────────────
-function hbar(lbl,val,maxV,color,dv){
-  const pct=maxV>0?Math.min(100,Math.round(val/maxV*100)):0;
+function hbar(lbl, val, maxV, color, dv){
+  const pct = maxV>0 ? Math.min(100, Math.round(val/maxV*100)) : 0;
   return `<div class="hbar"><div class="hbar-lbl" title="${lbl}">${lbl}</div><div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${color}"></div></div><div class="hbar-val">${dv!==undefined?dv:val}</div></div>`;
 }
 
-// ── RENDER ALL ────────────────────────────────────────────────
+// ── RENDER ────────────────────────────────────────────────────
 function renderAll(){
   updateSectors();
-  renderKPIs();renderDistBars();renderResumenPlanta();
-  renderTrend();renderListeria();renderSalmonella();
+  renderKPIs(); renderDistBars(); renderResumenPlanta();
+  renderTrend(); renderListeria(); renderSalmonella();
   buildLine();
 }
 
 function renderKPIs(){
-  const total=DATA.length;
-  const plantas=[...new Set(DATA.map(r=>r.planta))];
-  const puntos=[...new Set(DATA.map(r=>r.punto))].length;
-  const nums=DATA.filter(r=>r.entero_num!==null&&r.entero_num!==undefined);
-  const alto=nums.filter(r=>r.entero_num>=1000).length;
-  const med=nums.filter(r=>r.entero_num>=100&&r.entero_num<1000).length;
-  const ok=nums.filter(r=>r.entero_num<100).length;
-  const salmo=DATA.filter(r=>r.salmo_det).length;
-  const salmoZ=[...new Set(DATA.filter(r=>r.salmo_det).map(r=>r.planta+' '+r.zona))];
-  document.getElementById('kTotal').textContent=total;
-  document.getElementById('kTotalSub').textContent=plantas.length+' plantas · '+[...new Set(DATA.map(r=>r.zona))].length+' zonas';
-  document.getElementById('kPuntos').textContent=puntos;
-  document.getElementById('kEnteroAlto').textContent=alto;
-  document.getElementById('kEnteroAltoPct').textContent=total?Math.round(alto/total*100)+'% de muestreos':'—';
-  document.getElementById('kSalmo').textContent=salmo;
-  document.getElementById('kSalmoSub').textContent=salmoZ[0]||'Sin detecciones';
-  document.getElementById('kEnteroN').textContent=nums.length;
-  document.getElementById('kEnteroNSub').textContent='De '+total+' muestreos';
-  document.getElementById('kEnteroA').textContent=alto;
-  document.getElementById('kEnteroAPct').textContent=nums.length?Math.round(alto/nums.length*100)+'% del total':'—';
-  document.getElementById('kEnteroM').textContent=med;
-  document.getElementById('kEnteroMPct').textContent=nums.length?Math.round(med/nums.length*100)+'% del total':'—';
-  document.getElementById('kEnteroO').textContent=ok;
-  document.getElementById('kEnteroOPct').textContent=nums.length?Math.round(ok/nums.length*100)+'% del total':'—';
+  const total = DATA.length;
+  const plantas = [...new Set(DATA.map(r=>r.planta))];
+  const puntos  = [...new Set(DATA.map(r=>r.punto))].length;
+  const nums    = DATA.filter(r=>r.entero_num!==null&&r.entero_num!==undefined);
+  const alto    = nums.filter(r=>r.entero_num>=1000).length;
+  const med     = nums.filter(r=>r.entero_num>=100&&r.entero_num<1000).length;
+  const ok      = nums.filter(r=>r.entero_num<100).length;
+  const salmo   = DATA.filter(r=>r.salmo_det).length;
+  const salmoZ  = [...new Set(DATA.filter(r=>r.salmo_det).map(r=>r.planta+' '+r.zona))];
+  document.getElementById('kTotal').textContent      = total;
+  document.getElementById('kTotalSub').textContent   = plantas.length+' plantas · '+[...new Set(DATA.map(r=>r.zona))].length+' zonas';
+  document.getElementById('kPuntos').textContent     = puntos;
+  document.getElementById('kEnteroAlto').textContent = alto;
+  document.getElementById('kEnteroAltoPct').textContent = total?Math.round(alto/total*100)+'% de muestreos':'—';
+  document.getElementById('kSalmo').textContent      = salmo;
+  document.getElementById('kSalmoSub').textContent   = salmoZ[0]||'Sin detecciones';
+  document.getElementById('kEnteroN').textContent    = nums.length;
+  document.getElementById('kEnteroNSub').textContent = 'De '+total+' muestreos';
+  document.getElementById('kEnteroA').textContent    = alto;
+  document.getElementById('kEnteroAPct').textContent = nums.length?Math.round(alto/nums.length*100)+'% del total':'—';
+  document.getElementById('kEnteroM').textContent    = med;
+  document.getElementById('kEnteroMPct').textContent = nums.length?Math.round(med/nums.length*100)+'% del total':'—';
+  document.getElementById('kEnteroO').textContent    = ok;
+  document.getElementById('kEnteroOPct').textContent = nums.length?Math.round(ok/nums.length*100)+'% del total':'—';
 }
 
 function renderDistBars(){
-  const plantas=[...new Set(DATA.map(r=>r.planta))];
-  const cn=plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p).length})).sort((a,b)=>b.n-a.n);
-  const cs=plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p&&r.salmo_det).length})).sort((a,b)=>b.n-a.n);
-  const cl=plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p&&r.list_det).length})).sort((a,b)=>b.n-a.n);
+  const plantas = [...new Set(DATA.map(r=>r.planta))];
+  const cn = plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p).length})).sort((a,b)=>b.n-a.n);
+  const cs = plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p&&r.salmo_det).length})).sort((a,b)=>b.n-a.n);
+  const cl = plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p&&r.list_det).length})).sort((a,b)=>b.n-a.n);
   let h='';
   cn.forEach(c=>h+=hbar(c.p.replace('Planta ',''),c.n,Math.max(1,...cn.map(x=>x.n)),'#1a56a0'));
   h+='<div class="divider"></div><div class="sec-lbl">Salmonella detectada</div>';
   cs.forEach(c=>h+=hbar(c.p.replace('Planta ',''),c.n,Math.max(1,...cs.map(x=>x.n)),'#c0392b'));
   h+='<div class="divider"></div><div class="sec-lbl">Listeria detectada</div>';
   cl.forEach(c=>h+=hbar(c.p.replace('Planta ',''),c.n,Math.max(1,...cl.map(x=>x.n)),'#b45309'));
-  document.getElementById('distBars').innerHTML=h;
+  document.getElementById('distBars').innerHTML = h;
 }
 
 function renderResumenPlanta(){
-  const plantas=[...new Set(DATA.map(r=>r.planta))];
+  const plantas = [...new Set(DATA.map(r=>r.planta))];
   let h='';
   plantas.forEach((p,i)=>{
-    const d=DATA.filter(r=>r.planta===p);
-    const sal=d.filter(r=>r.salmo_det).length,lst=d.filter(r=>r.list_det).length;
+    const d = DATA.filter(r=>r.planta===p);
+    const sal=d.filter(r=>r.salmo_det).length, lst=d.filter(r=>r.list_det).length;
     const alto=d.filter(r=>r.entero_num!==null&&r.entero_num>=1000).length;
     h+=`${i>0?'<div class="divider"></div>':''}<div class="sec-lbl">${p}</div>
     <div class="stat-list">
@@ -649,26 +577,26 @@ function renderResumenPlanta(){
       <div class="stat-row"><span class="stat-lbl">Entero ≥ 1.000</span><span class="stat-val" style="color:${alto?'var(--amber)':'var(--ink)'}">${alto} muestreos</span></div>
     </div>`;
   });
-  document.getElementById('resumenPlanta').innerHTML=h;
+  document.getElementById('resumenPlanta').innerHTML = h;
 }
 
 function renderTrend(){
-  const byM={};
+  const byM = {};
   DATA.forEach(r=>{
-    const d=getD(r);
-    if(!d||r.entero_num===null||r.entero_num===undefined)return;
-    const k=d.getFullYear()+'-'+(d.getMonth()+1);
-    if(!byM[k])byM[k]=[];
+    const d = getD(r);
+    if(!d || r.entero_num===null || r.entero_num===undefined) return;
+    const k = d.getFullYear()+'-'+(d.getMonth()+1);
+    if(!byM[k]) byM[k]=[];
     byM[k].push(r.entero_num);
   });
-  const keys=Object.keys(byM).sort();
-  if(!keys.length)return;
-  const labels=keys.map(k=>{const[y,m]=k.split('-');return new Date(+y,+m-1,1).toLocaleDateString('es-AR',{month:'short',year:'numeric'});});
-  const vals=keys.map(k=>{const a=byM[k];return Math.round(a.reduce((s,v)=>s+v,0)/a.length);});
-  const ctx=document.getElementById('trendChart');
-  if(!ctx)return;
+  const keys = Object.keys(byM).sort();
+  if(!keys.length) return;
+  const labels = keys.map(k=>{const[y,m]=k.split('-');return new Date(+y,+m-1,1).toLocaleDateString('es-AR',{month:'short',year:'numeric'});});
+  const vals   = keys.map(k=>{const a=byM[k];return Math.round(a.reduce((s,v)=>s+v,0)/a.length);});
+  const ctx = document.getElementById('trendChart');
+  if(!ctx) return;
   if(trendInst){trendInst.destroy();trendInst=null;}
-  trendInst=new Chart(ctx,{type:'line',data:{labels,datasets:[
+  trendInst = new Chart(ctx,{type:'line',data:{labels,datasets:[
     {label:'Prom',data:vals,borderColor:'#1a56a0',backgroundColor:'rgba(26,86,160,0.07)',borderWidth:2,
      pointBackgroundColor(c){const v=c.dataset.data[c.dataIndex];return v>=1000?'#c0392b':v>=100?'#b45309':'#166534'},
      pointBorderColor:'#fff',pointBorderWidth:2,pointRadius:7,pointHoverRadius:10,tension:0.35,fill:true},
@@ -689,15 +617,15 @@ function buildLine(){
   const lim=parseInt(document.getElementById('fL').value);
   const filtered=DATA.filter(r=>{
     const d=getD(r);
-    if(fy&&(!d||d.getFullYear()!==+fy))return false;
-    if(fp==='Maní'&&!r.planta.includes('Maní'))return false;
-    if(fp==='Frito'&&!r.planta.includes('Frito'))return false;
-    if(fz&&r.zona!==fz)return false;
-    if(fs&&r.sector!==fs)return false;
+    if(fy&&(!d||d.getFullYear()!==+fy)) return false;
+    if(fp==='Maní'&&!r.planta.includes('Maní')) return false;
+    if(fp==='Frito'&&!r.planta.includes('Frito')) return false;
+    if(fz&&r.zona!==fz) return false;
+    if(fs&&r.sector!==fs) return false;
     return r.entero_num!==null&&r.entero_num!==undefined&&r.entero_num>=lim;
   }).sort((a,b)=>(getD(a)||0)-(getD(b)||0));
   const ctx=document.getElementById('lineChart');
-  if(!ctx)return;
+  if(!ctx) return;
   if(lineInst){lineInst.destroy();lineInst=null;}
   const note=document.getElementById('chartNote');
   if(!filtered.length){
@@ -727,7 +655,7 @@ function buildLine(){
 
 function renderListeria(){
   const dets=DATA.filter(r=>r.list_det).sort((a,b)=>(getD(b)||0)-(getD(a)||0));
-  document.getElementById('kListTotal').textContent=dets.length||'0';
+  document.getElementById('kListTotal').textContent=[...dets].length||'0';
   document.getElementById('kListPlantas').textContent=[...new Set(dets.map(r=>r.planta))].length||'0';
   if(dets[0]){
     const d0=getD(dets[0]);
@@ -739,7 +667,7 @@ function renderListeria(){
     document.getElementById('kListUltimoSub').textContent='Sin detecciones';
   }
   document.getElementById('listeriaTbody').innerHTML=dets.length
-    ?dets.map(r=>`<tr><td>${r.planta}</td><td>${r.zona}</td><td>${r.sector}</td><td title="${r.punto}">${r.punto}</td><td>${fmtFecha(getD(r))}</td><td><span class="pill amber">${r.listeria.toUpperCase()}</span></td></tr>`).join('')
+    ?dets.map(r=>`<tr><td>${r.planta}</td><td>${r.zona}</td><td>${r.sector}</td><td title="${r.punto}">${r.punto}</td><td>${fmtFecha(getD(r))}</td><td><span class="pill amber">${String(r.listeria).toUpperCase()}</span></td></tr>`).join('')
     :'<tr><td colspan="6" style="color:var(--ink3);text-align:center;padding:14px">Sin detecciones registradas</td></tr>';
   const grp={};dets.forEach(r=>{const k=r.planta+' · '+r.zona+' · '+r.sector;grp[k]=(grp[k]||0)+1;});
   const sorted=Object.entries(grp).sort((a,b)=>b[1]-a[1]);
@@ -775,31 +703,37 @@ function renderSalmonella(){
     document.getElementById('kSalmoRecSub').textContent='Sin detecciones';
   }
   document.getElementById('salmonellaTbody').innerHTML=dets.length
-    ?dets.map(r=>`<tr><td>${r.planta}</td><td>${r.zona}</td><td>${r.sector}</td><td title="${r.punto}">${r.punto}</td><td>${fmtFecha(getD(r))}</td><td><span class="pill red">${r.salmonella.toUpperCase()}</span></td></tr>`).join('')
+    ?dets.map(r=>`<tr><td>${r.planta}</td><td>${r.zona}</td><td>${r.sector}</td><td title="${r.punto}">${r.punto}</td><td>${fmtFecha(getD(r))}</td><td><span class="pill red">${String(r.salmonella).toUpperCase()}</span></td></tr>`).join('')
     :'<tr><td colspan="6" style="color:var(--ink3);text-align:center;padding:14px">Sin detecciones registradas</td></tr>';
   const sorted=Object.entries(byPunto).sort((a,b)=>b[1]-a[1]);
   document.getElementById('salmonellaBars').innerHTML=sorted.length?sorted.slice(0,8).map(([k,v])=>hbar(k,v,sorted[0][1],'#c0392b',v)).join(''):'<div style="font-size:11px;color:var(--ink3)">Sin detecciones</div>';
   const ins=document.getElementById('salmonellaInsight');
-  if(topPunto&&topPunto[1]>1){ins.style.display='block';ins.innerHTML=`<strong>Punto crítico persistente:</strong> "${topPunto[0]}" presentó Salmonella en ${topPunto[1]} muestreos.`;}
-  else ins.style.display='none';
+  if(topPunto&&topPunto[1]>1){
+    ins.style.display='block';
+    ins.innerHTML=`<strong>Punto crítico persistente:</strong> "${topPunto[0]}" presentó Salmonella en ${topPunto[1]} muestreos.`;
+  } else ins.style.display='none';
 }
 
 function exportPDF(){
   const btn=document.querySelector('.btn-export');
-  const orig=btn.innerHTML;btn.textContent='Generando...';btn.disabled=true;
+  const orig=btn.innerHTML; btn.textContent='Generando...'; btn.disabled=true;
   html2canvas(document.getElementById('dashRoot'),{scale:2,useCORS:true,backgroundColor:'#ffffff'}).then(canvas=>{
     const{jsPDF}=window.jspdf;
     const pdf=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
-    const pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+    const pw=pdf.internal.pageSize.getWidth(), ph=pdf.internal.pageSize.getHeight();
     const imgH=(pw/canvas.width)*canvas.height;
     pdf.addImage(canvas.toDataURL('image/png'),'PNG',0,Math.max(0,(ph-Math.min(imgH,ph))/2),pw,Math.min(imgH,ph));
     pdf.save('Monitoreo_Ambiental_'+new Date().toISOString().slice(0,10)+'.pdf');
-    btn.innerHTML=orig;btn.disabled=false;
-  }).catch(()=>{btn.innerHTML=orig;btn.disabled=false;});
+    btn.innerHTML=orig; btn.disabled=false;
+  }).catch(()=>{btn.innerHTML=orig; btn.disabled=false;});
 }
 
-// ── ARRANQUE ──────────────────────────────────────────────────
-window.addEventListener('load',()=>syncAll(true));
+// ── INICIO ────────────────────────────────────────────────────
+window.addEventListener('load', ()=>syncNow());
+
+</script>
+</body>
+</html>
 
 </script>
 </body>
