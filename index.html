@@ -1,5 +1,3 @@
-![image alt](https://github.com/rgutierrez-ADG/Monitoreo-2026/blob/8c814b75170ac70202ea945094df5ddaf8d159e4/WhatsApp%20Image%202025-12-19%20at%205.26.42%20PM.jpeg)
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,8 +11,7 @@
   --surface:#fff;--surface2:#f7f8fa;--surface3:#eef1f5;
   --blue:#1a56a0;--red:#c0392b;--red-light:#fdf0ef;
   --amber:#b45309;--amber-light:#fef7ed;
-  --green:#166534;--green-light:#f0fdf4;
-  --border:rgba(0,0,0,0.08);--radius:10px;--radius-sm:6px;
+  --green:#166534;--border:rgba(0,0,0,0.08);--radius:10px;--radius-sm:6px;
 }
 body{font-family:system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var(--ink);min-height:100vh;padding:20px}
 .shell{border:0.5px solid rgba(0,0,0,0.12);border-radius:14px;overflow:hidden;background:var(--surface);max-width:1120px;margin:0 auto}
@@ -43,7 +40,6 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var
 .sync-dot.ok{background:#22c55e}
 .sync-dot.loading{background:#f59e0b;animation:blink .7s ease-in-out infinite}
 .sync-dot.err{background:#c0392b}
-.sync-dot.idle{background:#8a9ab0}
 .sync-info{display:flex;flex-direction:column;gap:1px}
 .sync-msg{font-size:11px;color:var(--ink2);font-weight:500}
 .sync-sub{font-size:10px;color:var(--ink3)}
@@ -78,7 +74,7 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var
 .loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;gap:16px}
 .loading-spinner{width:36px;height:36px;border:3px solid var(--surface3);border-top-color:var(--blue);border-radius:50%;animation:spin 0.8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading-text{font-size:13px;color:var(--ink3);text-align:center}
+.loading-text{font-size:13px;color:var(--ink3);text-align:center;line-height:1.6}
 .tabs{display:flex;background:var(--surface2);border-bottom:0.5px solid var(--border);padding:0 24px;align-items:center}
 .tab{font-size:12px;color:var(--ink3);padding:11px 15px;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;white-space:nowrap}
 .tab:hover{color:var(--ink2)}.tab.on{color:var(--blue);border-bottom-color:var(--blue);font-weight:500}
@@ -323,159 +319,142 @@ select:focus{border-color:var(--blue)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
-
 // ── CONFIG ────────────────────────────────────────────────────
-const API_URL = 'https://script.google.com/macros/s/AKfycbwd2oSLVDOFMEgsr3pXOaYuAwCyyMOuJ5LM_W_YBVxHAH1bbAbtyYhjL4C-RkPlOA/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwd2oSLVDOFMEgsr3pXOaYuAwCyyMOuJ5LM_W_YBVxHAH1bbAbtyYhjL4C-RkPlOA/exec';
 const SYNC_SECS = 300;
 
 // ── ESTADO ────────────────────────────────────────────────────
-let DATA = [];
-let trendInst = null, lineInst = null;
+let DATA = [], trendInst = null, lineInst = null;
 let changelog = [], lastSnapshot = '', firstLoad = true;
 let countdownSecs = SYNC_SECS, countdownTimer = null;
 
 // ── RELOJ ─────────────────────────────────────────────────────
 function tick(){
-  const n = new Date();
-  document.getElementById('luFecha').textContent = n.toLocaleDateString('es-AR',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});
-  document.getElementById('luHora').textContent  = n.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const n=new Date();
+  document.getElementById('luFecha').textContent=n.toLocaleDateString('es-AR',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});
+  document.getElementById('luHora').textContent=n.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
 }
-tick(); setInterval(tick, 1000);
+tick(); setInterval(tick,1000);
 
-// ── STATUS ────────────────────────────────────────────────────
-function setSyncStatus(type, msg, sub){
-  document.getElementById('syncDot').className = 'sync-dot ' + type;
-  document.getElementById('syncMsg').textContent = msg;
-  if(sub !== undefined) document.getElementById('syncSub').textContent = sub;
+function setSyncStatus(type,msg,sub){
+  document.getElementById('syncDot').className='sync-dot '+type;
+  document.getElementById('syncMsg').textContent=msg;
+  if(sub!==undefined) document.getElementById('syncSub').textContent=sub;
 }
 
-// ── COUNTDOWN ─────────────────────────────────────────────────
 function startCountdown(){
-  countdownSecs = SYNC_SECS;
-  document.getElementById('countdownWrap').style.display = 'flex';
+  countdownSecs=SYNC_SECS;
+  document.getElementById('countdownWrap').style.display='flex';
   clearInterval(countdownTimer);
-  countdownTimer = setInterval(()=>{
+  countdownTimer=setInterval(()=>{
     countdownSecs--;
-    if(countdownSecs <= 0){ clearInterval(countdownTimer); syncNow(); return; }
-    const m = Math.floor(countdownSecs/60), s = countdownSecs % 60;
-    document.getElementById('countdownText').textContent = m + ':' + (s<10?'0':'') + s;
-    document.getElementById('countdownFill').style.width = (countdownSecs/SYNC_SECS*100) + '%';
-  }, 1000);
+    if(countdownSecs<=0){clearInterval(countdownTimer);syncNow();return;}
+    const m=Math.floor(countdownSecs/60),s=countdownSecs%60;
+    document.getElementById('countdownText').textContent=m+':'+(s<10?'0':'')+s;
+    document.getElementById('countdownFill').style.width=(countdownSecs/SYNC_SECS*100)+'%';
+  },1000);
 }
 
-// ── HELPERS ───────────────────────────────────────────────────
-function parseEntero(v){
-  if(!v || ['-',''].includes(String(v).trim().toLowerCase())) return null;
-  const s = String(v).trim().toUpperCase().replace(',','.');
-  if(s === '<10') return 5;
-  const n = parseFloat(s.replace(/^NE\s*/,''));
-  return isNaN(n) ? null : n;
-}
-function parseFecha(v){
-  if(!v) return null;
-  const d = new Date(v);
-  return isNaN(d) ? null : d;
-}
-function fmtFecha(d){ return d ? d.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'}) : '—'; }
-function getD(r){ return r._fecha instanceof Date ? r._fecha : (r.fecha ? parseFecha(r.fecha) : null); }
-
-// ── FETCH desde Apps Script ───────────────────────────────────
-async function syncNow(){
+// ── JSONP — única técnica que evita CORS con Apps Script ──────
+function syncNow(){
   clearInterval(countdownTimer);
-  setSyncStatus('loading', 'Actualizando datos...', 'Conectando con Google Sheets...');
-  try{
-    const resp = await fetch(API_URL + '?t=' + Date.now());
-    if(!resp.ok) throw new Error('HTTP ' + resp.status);
-    const raw = await resp.json();
+  setSyncStatus('loading','Actualizando desde Google Sheets...','Conectando...');
 
-    // Normalizar datos
-    const newData = raw.map(r => ({
-      ...r,
-      entero_num: parseEntero(r.entero_raw),
-      salmo_det:  String(r.salmonella||'').toLowerCase() === 'detectado',
-      list_det:   ['detectado','d'].includes(String(r.listeria||'').toLowerCase()),
-      _fecha:     parseFecha(r.fecha),
-    }));
+  // Eliminar script anterior si existe
+  const old=document.getElementById('jsonp-script');
+  if(old) old.remove();
 
-    if(newData.length === 0) throw new Error('Sin datos recibidos del servidor');
+  // Timeout por si el script no responde
+  const timeout=setTimeout(()=>{
+    setSyncStatus('err','Tiempo de espera agotado — reintentando en 5 min','Verificá tu conexión a internet');
+    if(firstLoad) showLoadingError();
+    startCountdown();
+  },15000);
 
-    // Detectar cambios
-    const newSnap = makeSnapshot(newData);
-    if(!firstLoad && lastSnapshot && lastSnapshot !== newSnap){
-      const changes = detectChanges(lastSnapshot, newSnap);
-      if(changes.length) addChangelog(changes);
+  // Callback global que Apps Script va a llamar
+  window.__onData=function(raw){
+    clearTimeout(timeout);
+    try{
+      const newData=raw.map(r=>({
+        ...r,
+        entero_num: parseEntero(r.entero_raw),
+        salmo_det:  String(r.salmonella||'').toLowerCase()==='detectado',
+        list_det:   ['detectado','d'].includes(String(r.listeria||'').toLowerCase()),
+        _fecha:     r.fecha ? new Date(r.fecha) : null,
+      }));
+      if(!newData.length) throw new Error('Sin datos');
+
+      const newSnap=makeSnapshot(newData);
+      if(!firstLoad && lastSnapshot && lastSnapshot!==newSnap){
+        const changes=detectChanges(lastSnapshot,newSnap);
+        if(changes.length) addChangelog(changes);
+      }
+      lastSnapshot=newSnap;
+      DATA=newData;
+
+      if(firstLoad){
+        firstLoad=false;
+        document.getElementById('loadingScreen').style.display='none';
+        document.getElementById('mainContent').style.display='block';
+        document.getElementById('changelogBtn').style.display='flex';
+      }
+
+      const hora=new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+      setSyncStatus('ok','Sincronizado · '+DATA.length+' registros · '+hora,'Próxima actualización automática en 5 minutos');
+      renderAll();
+    }catch(e){
+      setSyncStatus('err','Error procesando datos: '+e.message,'Reintentando en 5 min');
+      if(firstLoad) showLoadingError();
     }
-    lastSnapshot = newSnap;
-    DATA = newData;
+    startCountdown();
+  };
 
-    if(firstLoad){
-      firstLoad = false;
-      document.getElementById('loadingScreen').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
-      document.getElementById('changelogBtn').style.display = 'flex';
-    }
+  // Inyectar script JSONP — Apps Script responde llamando a __onData([...])
+  const script=document.createElement('script');
+  script.id='jsonp-script';
+  script.src=SCRIPT_URL+'?callback=__onData&t='+Date.now();
+  script.onerror=()=>{
+    clearTimeout(timeout);
+    setSyncStatus('err','No se pudo conectar con Google Apps Script','Reintentando en 5 min');
+    if(firstLoad) showLoadingError();
+    startCountdown();
+  };
+  document.head.appendChild(script);
+}
 
-    const hora = new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
-    setSyncStatus('ok',
-      'Sincronizado · ' + DATA.length + ' registros · ' + hora,
-      'Próxima actualización automática en 5 minutos');
-    renderAll();
-
-  } catch(e){
-    setSyncStatus('err', 'Error: ' + e.message, 'Reintentando en 5 minutos');
-    if(firstLoad){
-      document.getElementById('loadingText').innerHTML =
-        'No se pudo conectar con Google Sheets.<br><br>' +
-        '<button onclick="syncNow()" style="padding:8px 16px;background:#1a56a0;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px">Reintentar</button>';
-    }
-  }
-  startCountdown();
+function showLoadingError(){
+  document.getElementById('loadingText').innerHTML=
+    'No se pudo conectar con Google Sheets.<br>'+
+    'Verificá tu conexión a internet.<br><br>'+
+    '<button onclick="syncNow()" style="padding:8px 18px;background:#1a56a0;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px">Reintentar</button>';
 }
 
 // ── CHANGELOG ─────────────────────────────────────────────────
 function makeSnapshot(data){
   return JSON.stringify({
-    total: data.length,
-    salmo: data.filter(r=>r.salmo_det).length,
-    list:  data.filter(r=>r.list_det).length,
-    alto:  data.filter(r=>r.entero_num!==null&&r.entero_num>=1000).length,
+    total:data.length,
+    salmo:data.filter(r=>r.salmo_det).length,
+    list:data.filter(r=>r.list_det).length,
+    alto:data.filter(r=>r.entero_num!==null&&r.entero_num>=1000).length,
   });
 }
-
-function detectChanges(prevSnap, currSnap){
-  const prev = JSON.parse(prevSnap), curr = JSON.parse(currSnap);
-  const changes = [], hora = new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
-  if(curr.total !== prev.total){
-    const d = curr.total - prev.total;
-    changes.push({time:hora, title:'Nuevos muestreos cargados', detail:(d>0?'+':'')+d+' registros (total: '+curr.total+')', type:'new'});
-  }
-  if(curr.salmo !== prev.salmo){
-    const d = curr.salmo - prev.salmo;
-    changes.push({time:hora, title:'Salmonella: cambio en detecciones', detail:(d>0?'+':'')+d+' (total: '+curr.salmo+')', type:d>0?'alert':'mod'});
-  }
-  if(curr.list !== prev.list){
-    const d = curr.list - prev.list;
-    changes.push({time:hora, title:'Listeria: cambio en detecciones', detail:(d>0?'+':'')+d+' (total: '+curr.list+')', type:d>0?'alert':'mod'});
-  }
-  if(curr.alto !== prev.alto){
-    const d = curr.alto - prev.alto;
-    changes.push({time:hora, title:'Enterobacterias nivel alto: cambio', detail:(d>0?'+':'')+d+' muestreos ≥ 1.000 UFC/SM', type:d>0?'alert':'mod'});
-  }
+function detectChanges(prevSnap,currSnap){
+  const prev=JSON.parse(prevSnap),curr=JSON.parse(currSnap);
+  const changes=[],hora=new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+  if(curr.total!==prev.total){const d=curr.total-prev.total;changes.push({time:hora,title:'Nuevos muestreos cargados',detail:(d>0?'+':'')+d+' registros (total: '+curr.total+')',type:'new'});}
+  if(curr.salmo!==prev.salmo){const d=curr.salmo-prev.salmo;changes.push({time:hora,title:'Salmonella: cambio en detecciones',detail:(d>0?'+':'')+d+' (total: '+curr.salmo+')',type:d>0?'alert':'mod'});}
+  if(curr.list!==prev.list){const d=curr.list-prev.list;changes.push({time:hora,title:'Listeria: cambio en detecciones',detail:(d>0?'+':'')+d+' (total: '+curr.list+')',type:d>0?'alert':'mod'});}
+  if(curr.alto!==prev.alto){const d=curr.alto-prev.alto;changes.push({time:hora,title:'Enterobacterias nivel alto: cambio',detail:(d>0?'+':'')+d+' muestreos ≥ 1.000 UFC/SM',type:d>0?'alert':'mod'});}
   return changes;
 }
-
 function addChangelog(changes){
-  changelog = [...changes, ...changelog].slice(0,50);
+  changelog=[...changes,...changelog].slice(0,50);
   renderChangelog();
-  document.getElementById('notifBadge').style.display = 'flex';
+  document.getElementById('notifBadge').style.display='flex';
 }
-
 function renderChangelog(){
-  if(!changelog.length){
-    document.getElementById('changelogBody').innerHTML = '<div class="no-changes">Sin cambios detectados en esta sesión.</div>';
-    return;
-  }
-  document.getElementById('changelogBody').innerHTML = changelog.map(c=>`
+  if(!changelog.length){document.getElementById('changelogBody').innerHTML='<div class="no-changes">Sin cambios detectados en esta sesión.</div>';return;}
+  document.getElementById('changelogBody').innerHTML=changelog.map(c=>`
     <div class="ch-item">
       <div class="ch-time">${c.time}</div>
       <div class="ch-content">
@@ -484,90 +463,90 @@ function renderChangelog(){
       </div>
     </div>`).join('');
 }
+function toggleChangelog(){document.getElementById('changelogWrap').classList.toggle('open');}
+function clearNotif(){document.getElementById('notifBadge').style.display='none';}
 
-function toggleChangelog(){ document.getElementById('changelogWrap').classList.toggle('open'); }
-function clearNotif(){ document.getElementById('notifBadge').style.display = 'none'; }
+// ── UTILS ─────────────────────────────────────────────────────
+function parseEntero(v){
+  if(!v||['-',''].includes(String(v).trim().toLowerCase()))return null;
+  const s=String(v).trim().toUpperCase().replace(',','.');
+  if(s==='<10')return 5;
+  const n=parseFloat(s.replace(/^NE\s*/,''));
+  return isNaN(n)?null:n;
+}
+function parseFecha(v){if(!v)return null;const d=new Date(v);return isNaN(d)?null:d;}
+function fmtFecha(d){return d?d.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'}):'—';}
+function getD(r){return r._fecha instanceof Date?r._fecha:parseFecha(r.fecha);}
+function hbar(lbl,val,maxV,color,dv){
+  const pct=maxV>0?Math.min(100,Math.round(val/maxV*100)):0;
+  return `<div class="hbar"><div class="hbar-lbl" title="${lbl}">${lbl}</div><div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${color}"></div></div><div class="hbar-val">${dv!==undefined?dv:val}</div></div>`;
+}
 
-// ── TABS / SECTORES ───────────────────────────────────────────
-function showTab(id, btn){
+// ── TABS ──────────────────────────────────────────────────────
+function showTab(id,btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
   document.getElementById('tab-'+id).classList.add('on');
   btn.classList.add('on');
-  if(id==='entero') setTimeout(buildLine, 60);
+  if(id==='entero')setTimeout(buildLine,60);
 }
-
 function updateSectors(){
-  const fp = document.getElementById('fP').value;
-  const secs = [...new Set(DATA.filter(r=>{
-    if(fp==='Maní' && !r.planta.includes('Maní')) return false;
-    if(fp==='Frito' && !r.planta.includes('Frito')) return false;
+  const fp=document.getElementById('fP').value;
+  const secs=[...new Set(DATA.filter(r=>{
+    if(fp==='Maní'&&!r.planta.includes('Maní'))return false;
+    if(fp==='Frito'&&!r.planta.includes('Frito'))return false;
     return true;
   }).map(r=>r.sector).filter(Boolean))].sort();
-  const s = document.getElementById('fS');
-  s.innerHTML = '<option value="">Todos</option>' + secs.map(x=>`<option value="${x}">${x}</option>`).join('');
-}
-
-function hbar(lbl, val, maxV, color, dv){
-  const pct = maxV>0 ? Math.min(100, Math.round(val/maxV*100)) : 0;
-  return `<div class="hbar"><div class="hbar-lbl" title="${lbl}">${lbl}</div><div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${color}"></div></div><div class="hbar-val">${dv!==undefined?dv:val}</div></div>`;
+  const s=document.getElementById('fS');
+  s.innerHTML='<option value="">Todos</option>'+secs.map(x=>`<option value="${x}">${x}</option>`).join('');
 }
 
 // ── RENDER ────────────────────────────────────────────────────
 function renderAll(){
   updateSectors();
-  renderKPIs(); renderDistBars(); renderResumenPlanta();
-  renderTrend(); renderListeria(); renderSalmonella();
-  buildLine();
+  renderKPIs();renderDistBars();renderResumenPlanta();
+  renderTrend();renderListeria();renderSalmonella();buildLine();
 }
-
 function renderKPIs(){
-  const total = DATA.length;
-  const plantas = [...new Set(DATA.map(r=>r.planta))];
-  const puntos  = [...new Set(DATA.map(r=>r.punto))].length;
-  const nums    = DATA.filter(r=>r.entero_num!==null&&r.entero_num!==undefined);
-  const alto    = nums.filter(r=>r.entero_num>=1000).length;
-  const med     = nums.filter(r=>r.entero_num>=100&&r.entero_num<1000).length;
-  const ok      = nums.filter(r=>r.entero_num<100).length;
-  const salmo   = DATA.filter(r=>r.salmo_det).length;
-  const salmoZ  = [...new Set(DATA.filter(r=>r.salmo_det).map(r=>r.planta+' '+r.zona))];
-  document.getElementById('kTotal').textContent      = total;
-  document.getElementById('kTotalSub').textContent   = plantas.length+' plantas · '+[...new Set(DATA.map(r=>r.zona))].length+' zonas';
-  document.getElementById('kPuntos').textContent     = puntos;
-  document.getElementById('kEnteroAlto').textContent = alto;
-  document.getElementById('kEnteroAltoPct').textContent = total?Math.round(alto/total*100)+'% de muestreos':'—';
-  document.getElementById('kSalmo').textContent      = salmo;
-  document.getElementById('kSalmoSub').textContent   = salmoZ[0]||'Sin detecciones';
-  document.getElementById('kEnteroN').textContent    = nums.length;
-  document.getElementById('kEnteroNSub').textContent = 'De '+total+' muestreos';
-  document.getElementById('kEnteroA').textContent    = alto;
-  document.getElementById('kEnteroAPct').textContent = nums.length?Math.round(alto/nums.length*100)+'% del total':'—';
-  document.getElementById('kEnteroM').textContent    = med;
-  document.getElementById('kEnteroMPct').textContent = nums.length?Math.round(med/nums.length*100)+'% del total':'—';
-  document.getElementById('kEnteroO').textContent    = ok;
-  document.getElementById('kEnteroOPct').textContent = nums.length?Math.round(ok/nums.length*100)+'% del total':'—';
+  const total=DATA.length,plantas=[...new Set(DATA.map(r=>r.planta))];
+  const puntos=[...new Set(DATA.map(r=>r.punto))].length;
+  const nums=DATA.filter(r=>r.entero_num!==null&&r.entero_num!==undefined);
+  const alto=nums.filter(r=>r.entero_num>=1000).length,med=nums.filter(r=>r.entero_num>=100&&r.entero_num<1000).length,ok=nums.filter(r=>r.entero_num<100).length;
+  const salmo=DATA.filter(r=>r.salmo_det).length,salmoZ=[...new Set(DATA.filter(r=>r.salmo_det).map(r=>r.planta+' '+r.zona))];
+  document.getElementById('kTotal').textContent=total;
+  document.getElementById('kTotalSub').textContent=plantas.length+' plantas · '+[...new Set(DATA.map(r=>r.zona))].length+' zonas';
+  document.getElementById('kPuntos').textContent=puntos;
+  document.getElementById('kEnteroAlto').textContent=alto;
+  document.getElementById('kEnteroAltoPct').textContent=total?Math.round(alto/total*100)+'% de muestreos':'—';
+  document.getElementById('kSalmo').textContent=salmo;
+  document.getElementById('kSalmoSub').textContent=salmoZ[0]||'Sin detecciones';
+  document.getElementById('kEnteroN').textContent=nums.length;
+  document.getElementById('kEnteroNSub').textContent='De '+total+' muestreos';
+  document.getElementById('kEnteroA').textContent=alto;
+  document.getElementById('kEnteroAPct').textContent=nums.length?Math.round(alto/nums.length*100)+'% del total':'—';
+  document.getElementById('kEnteroM').textContent=med;
+  document.getElementById('kEnteroMPct').textContent=nums.length?Math.round(med/nums.length*100)+'% del total':'—';
+  document.getElementById('kEnteroO').textContent=ok;
+  document.getElementById('kEnteroOPct').textContent=nums.length?Math.round(ok/nums.length*100)+'% del total':'—';
 }
-
 function renderDistBars(){
-  const plantas = [...new Set(DATA.map(r=>r.planta))];
-  const cn = plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p).length})).sort((a,b)=>b.n-a.n);
-  const cs = plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p&&r.salmo_det).length})).sort((a,b)=>b.n-a.n);
-  const cl = plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p&&r.list_det).length})).sort((a,b)=>b.n-a.n);
+  const plantas=[...new Set(DATA.map(r=>r.planta))];
+  const cn=plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p).length})).sort((a,b)=>b.n-a.n);
+  const cs=plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p&&r.salmo_det).length})).sort((a,b)=>b.n-a.n);
+  const cl=plantas.map(p=>({p,n:DATA.filter(r=>r.planta===p&&r.list_det).length})).sort((a,b)=>b.n-a.n);
   let h='';
   cn.forEach(c=>h+=hbar(c.p.replace('Planta ',''),c.n,Math.max(1,...cn.map(x=>x.n)),'#1a56a0'));
   h+='<div class="divider"></div><div class="sec-lbl">Salmonella detectada</div>';
   cs.forEach(c=>h+=hbar(c.p.replace('Planta ',''),c.n,Math.max(1,...cs.map(x=>x.n)),'#c0392b'));
   h+='<div class="divider"></div><div class="sec-lbl">Listeria detectada</div>';
   cl.forEach(c=>h+=hbar(c.p.replace('Planta ',''),c.n,Math.max(1,...cl.map(x=>x.n)),'#b45309'));
-  document.getElementById('distBars').innerHTML = h;
+  document.getElementById('distBars').innerHTML=h;
 }
-
 function renderResumenPlanta(){
-  const plantas = [...new Set(DATA.map(r=>r.planta))];
-  let h='';
+  const plantas=[...new Set(DATA.map(r=>r.planta))];let h='';
   plantas.forEach((p,i)=>{
-    const d = DATA.filter(r=>r.planta===p);
-    const sal=d.filter(r=>r.salmo_det).length, lst=d.filter(r=>r.list_det).length;
+    const d=DATA.filter(r=>r.planta===p);
+    const sal=d.filter(r=>r.salmo_det).length,lst=d.filter(r=>r.list_det).length;
     const alto=d.filter(r=>r.entero_num!==null&&r.entero_num>=1000).length;
     h+=`${i>0?'<div class="divider"></div>':''}<div class="sec-lbl">${p}</div>
     <div class="stat-list">
@@ -577,26 +556,17 @@ function renderResumenPlanta(){
       <div class="stat-row"><span class="stat-lbl">Entero ≥ 1.000</span><span class="stat-val" style="color:${alto?'var(--amber)':'var(--ink)'}">${alto} muestreos</span></div>
     </div>`;
   });
-  document.getElementById('resumenPlanta').innerHTML = h;
+  document.getElementById('resumenPlanta').innerHTML=h;
 }
-
 function renderTrend(){
-  const byM = {};
-  DATA.forEach(r=>{
-    const d = getD(r);
-    if(!d || r.entero_num===null || r.entero_num===undefined) return;
-    const k = d.getFullYear()+'-'+(d.getMonth()+1);
-    if(!byM[k]) byM[k]=[];
-    byM[k].push(r.entero_num);
-  });
-  const keys = Object.keys(byM).sort();
-  if(!keys.length) return;
-  const labels = keys.map(k=>{const[y,m]=k.split('-');return new Date(+y,+m-1,1).toLocaleDateString('es-AR',{month:'short',year:'numeric'});});
-  const vals   = keys.map(k=>{const a=byM[k];return Math.round(a.reduce((s,v)=>s+v,0)/a.length);});
-  const ctx = document.getElementById('trendChart');
-  if(!ctx) return;
+  const byM={};
+  DATA.forEach(r=>{const d=getD(r);if(!d||r.entero_num===null||r.entero_num===undefined)return;const k=d.getFullYear()+'-'+(d.getMonth()+1);if(!byM[k])byM[k]=[];byM[k].push(r.entero_num);});
+  const keys=Object.keys(byM).sort();if(!keys.length)return;
+  const labels=keys.map(k=>{const[y,m]=k.split('-');return new Date(+y,+m-1,1).toLocaleDateString('es-AR',{month:'short',year:'numeric'});});
+  const vals=keys.map(k=>{const a=byM[k];return Math.round(a.reduce((s,v)=>s+v,0)/a.length);});
+  const ctx=document.getElementById('trendChart');if(!ctx)return;
   if(trendInst){trendInst.destroy();trendInst=null;}
-  trendInst = new Chart(ctx,{type:'line',data:{labels,datasets:[
+  trendInst=new Chart(ctx,{type:'line',data:{labels,datasets:[
     {label:'Prom',data:vals,borderColor:'#1a56a0',backgroundColor:'rgba(26,86,160,0.07)',borderWidth:2,
      pointBackgroundColor(c){const v=c.dataset.data[c.dataIndex];return v>=1000?'#c0392b':v>=100?'#b45309':'#166534'},
      pointBorderColor:'#fff',pointBorderWidth:2,pointRadius:7,pointHoverRadius:10,tension:0.35,fill:true},
@@ -608,31 +578,24 @@ function renderTrend(){
       y:{min:0,ticks:{color:'#8a9ab0',font:{size:11},callback:v=>v>=1000?(v/1000).toFixed(1)+'k':v},
          grid:{color:'rgba(0,0,0,0.04)'},title:{display:true,text:'UFC / SM',color:'#8a9ab0',font:{size:11}}}}}});
 }
-
 function buildLine(){
-  const fy=document.getElementById('fY').value;
-  const fp=document.getElementById('fP').value;
-  const fz=document.getElementById('fZ').value;
-  const fs=document.getElementById('fS').value;
+  const fy=document.getElementById('fY').value,fp=document.getElementById('fP').value;
+  const fz=document.getElementById('fZ').value,fs=document.getElementById('fS').value;
   const lim=parseInt(document.getElementById('fL').value);
   const filtered=DATA.filter(r=>{
     const d=getD(r);
-    if(fy&&(!d||d.getFullYear()!==+fy)) return false;
-    if(fp==='Maní'&&!r.planta.includes('Maní')) return false;
-    if(fp==='Frito'&&!r.planta.includes('Frito')) return false;
-    if(fz&&r.zona!==fz) return false;
-    if(fs&&r.sector!==fs) return false;
+    if(fy&&(!d||d.getFullYear()!==+fy))return false;
+    if(fp==='Maní'&&!r.planta.includes('Maní'))return false;
+    if(fp==='Frito'&&!r.planta.includes('Frito'))return false;
+    if(fz&&r.zona!==fz)return false;
+    if(fs&&r.sector!==fs)return false;
     return r.entero_num!==null&&r.entero_num!==undefined&&r.entero_num>=lim;
   }).sort((a,b)=>(getD(a)||0)-(getD(b)||0));
-  const ctx=document.getElementById('lineChart');
-  if(!ctx) return;
+  const ctx=document.getElementById('lineChart');if(!ctx)return;
   if(lineInst){lineInst.destroy();lineInst=null;}
   const note=document.getElementById('chartNote');
-  if(!filtered.length){
-    note.textContent='Sin muestreos fuera del límite con los filtros seleccionados.';
-    lineInst=new Chart(ctx,{type:'line',data:{labels:[],datasets:[]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
-    return;
-  }
+  if(!filtered.length){note.textContent='Sin muestreos fuera del límite con los filtros seleccionados.';
+    lineInst=new Chart(ctx,{type:'line',data:{labels:[],datasets:[]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});return;}
   note.textContent=filtered.length+' muestreo'+(filtered.length>1?'s':'')+' fuera del límite de '+lim.toLocaleString()+' UFC/SM';
   lineInst=new Chart(ctx,{type:'line',data:{
     labels:filtered.map(r=>{const d=getD(r);return d?d.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit'}):'—';}),
@@ -652,20 +615,16 @@ function buildLine(){
       y:{min:0,ticks:{color:'#8a9ab0',font:{size:11},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},
          grid:{color:'rgba(0,0,0,0.05)'},title:{display:true,text:'UFC / SM',color:'#8a9ab0',font:{size:11}}}}}});
 }
-
 function renderListeria(){
   const dets=DATA.filter(r=>r.list_det).sort((a,b)=>(getD(b)||0)-(getD(a)||0));
-  document.getElementById('kListTotal').textContent=[...dets].length||'0';
+  document.getElementById('kListTotal').textContent=dets.length||'0';
   document.getElementById('kListPlantas').textContent=[...new Set(dets.map(r=>r.planta))].length||'0';
   if(dets[0]){
     const d0=getD(dets[0]);
     document.getElementById('kListUltimo').textContent=d0?d0.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'2-digit'}):'—';
     const mismo=dets.filter(r=>{const d=getD(r);return d&&d0&&d.toDateString()===d0.toDateString();}).length;
     document.getElementById('kListUltimoSub').textContent=mismo+' punto'+(mismo>1?'s':'')+' en simultáneo';
-  } else {
-    document.getElementById('kListUltimo').textContent='—';
-    document.getElementById('kListUltimoSub').textContent='Sin detecciones';
-  }
+  } else {document.getElementById('kListUltimo').textContent='—';document.getElementById('kListUltimoSub').textContent='Sin detecciones';}
   document.getElementById('listeriaTbody').innerHTML=dets.length
     ?dets.map(r=>`<tr><td>${r.planta}</td><td>${r.zona}</td><td>${r.sector}</td><td title="${r.punto}">${r.punto}</td><td>${fmtFecha(getD(r))}</td><td><span class="pill amber">${String(r.listeria).toUpperCase()}</span></td></tr>`).join('')
     :'<tr><td colspan="6" style="color:var(--ink3);text-align:center;padding:14px">Sin detecciones registradas</td></tr>';
@@ -680,7 +639,6 @@ function renderListeria(){
     ins.innerHTML=`<strong>Patrón detectado:</strong> ${mismo} de ${dets.length} detecciones ocurrieron el ${fmtFecha(d0)}. Revisar protocolo de desinfección en zonas PE.`;
   } else ins.style.display='none';
 }
-
 function renderSalmonella(){
   const dets=DATA.filter(r=>r.salmo_det).sort((a,b)=>(getD(b)||0)-(getD(a)||0));
   document.getElementById('kSalmoTotal').textContent=dets.length||'0';
@@ -689,52 +647,42 @@ function renderSalmonella(){
   if(topP){
     document.getElementById('kSalmoPlanta').textContent=topP[0].replace('Planta ','');
     document.getElementById('kSalmoPlantaSub').textContent=[...new Set(dets.filter(r=>r.planta===topP[0]).map(r=>r.zona+' · '+r.sector))][0]||'';
-  } else {
-    document.getElementById('kSalmoPlanta').textContent='—';
-    document.getElementById('kSalmoPlantaSub').textContent='Sin detecciones';
-  }
+  } else {document.getElementById('kSalmoPlanta').textContent='—';document.getElementById('kSalmoPlantaSub').textContent='Sin detecciones';}
   const byPunto={};dets.forEach(r=>{byPunto[r.punto]=(byPunto[r.punto]||0)+1;});
   const topPunto=Object.entries(byPunto).sort((a,b)=>b[1]-a[1])[0];
   if(topPunto){
     document.getElementById('kSalmoRec').textContent=topPunto[1]+' ×';
     document.getElementById('kSalmoRecSub').textContent=topPunto[0].substring(0,30)+(topPunto[0].length>30?'…':'');
-  } else {
-    document.getElementById('kSalmoRec').textContent='—';
-    document.getElementById('kSalmoRecSub').textContent='Sin detecciones';
-  }
+  } else {document.getElementById('kSalmoRec').textContent='—';document.getElementById('kSalmoRecSub').textContent='Sin detecciones';}
   document.getElementById('salmonellaTbody').innerHTML=dets.length
     ?dets.map(r=>`<tr><td>${r.planta}</td><td>${r.zona}</td><td>${r.sector}</td><td title="${r.punto}">${r.punto}</td><td>${fmtFecha(getD(r))}</td><td><span class="pill red">${String(r.salmonella).toUpperCase()}</span></td></tr>`).join('')
     :'<tr><td colspan="6" style="color:var(--ink3);text-align:center;padding:14px">Sin detecciones registradas</td></tr>';
   const sorted=Object.entries(byPunto).sort((a,b)=>b[1]-a[1]);
   document.getElementById('salmonellaBars').innerHTML=sorted.length?sorted.slice(0,8).map(([k,v])=>hbar(k,v,sorted[0][1],'#c0392b',v)).join(''):'<div style="font-size:11px;color:var(--ink3)">Sin detecciones</div>';
   const ins=document.getElementById('salmonellaInsight');
-  if(topPunto&&topPunto[1]>1){
-    ins.style.display='block';
-    ins.innerHTML=`<strong>Punto crítico persistente:</strong> "${topPunto[0]}" presentó Salmonella en ${topPunto[1]} muestreos.`;
-  } else ins.style.display='none';
+  if(topPunto&&topPunto[1]>1){ins.style.display='block';ins.innerHTML=`<strong>Punto crítico persistente:</strong> "${topPunto[0]}" presentó Salmonella en ${topPunto[1]} muestreos.`;}
+  else ins.style.display='none';
 }
-
 function exportPDF(){
   const btn=document.querySelector('.btn-export');
-  const orig=btn.innerHTML; btn.textContent='Generando...'; btn.disabled=true;
+  const orig=btn.innerHTML;btn.textContent='Generando...';btn.disabled=true;
   html2canvas(document.getElementById('dashRoot'),{scale:2,useCORS:true,backgroundColor:'#ffffff'}).then(canvas=>{
     const{jsPDF}=window.jspdf;
     const pdf=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
-    const pw=pdf.internal.pageSize.getWidth(), ph=pdf.internal.pageSize.getHeight();
+    const pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
     const imgH=(pw/canvas.width)*canvas.height;
     pdf.addImage(canvas.toDataURL('image/png'),'PNG',0,Math.max(0,(ph-Math.min(imgH,ph))/2),pw,Math.min(imgH,ph));
     pdf.save('Monitoreo_Ambiental_'+new Date().toISOString().slice(0,10)+'.pdf');
-    btn.innerHTML=orig; btn.disabled=false;
-  }).catch(()=>{btn.innerHTML=orig; btn.disabled=false;});
+    btn.innerHTML=orig;btn.disabled=false;
+  }).catch(()=>{btn.innerHTML=orig;btn.disabled=false;});
 }
 
 // ── INICIO ────────────────────────────────────────────────────
-window.addEventListener('load', ()=>syncNow());
-
-</script>
-</body>
-</html>
-
+window.addEventListener('load',()=>{
+  // Apps Script necesita el parámetro callback para responder en JSONP
+  // Pero primero hay que actualizar el script para que lo soporte
+  syncNow();
+});
 </script>
 </body>
 </html>
